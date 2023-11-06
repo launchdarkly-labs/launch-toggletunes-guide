@@ -1,0 +1,98 @@
+---
+sidebar_position: 5
+title: Migrating Our New API - Backend Features
+---
+
+import {Copy, CheckSquare} from 'lucide-react';
+import CopyField from "../../../../components/copyfield.tsx";
+
+
+## Migrating Technologies with LaunchDarkly
+
+Picking up from where we last left off, we successfully updated the new webstore for Toggle Outfitters with a fancy new "Add to Cart" functionality, but when we tried out the new functionality - the cart doesn't actually work. 
+
+For this section, we're going to flex our backend development muscles and ship an API migration and Database migration using LaunchDarkly.
+
+## Step 1: Create an API feature flag
+
+It's always a good practice to create different flags for different frontend or backend components in our applications. Using LaunchDarkly lets you break your code into manageable pieces. In the case of the problem we've discovered here, for this migration, we are working with two components: our frontend UI code and backend API code. Let's work on the backend API code to resolve our issue.
+
+### Create the flag in LaunchDarkly
+At this point, you should be starting to feel like a feature flag pro. However, this time we're going to use the kill switch flag type. The differences are that a kill switch is a boolean and automatically defaults to the enabled variation when targeting is on. Here are the details:
+
+<div className="flex flex-col space-y-1 text-black dark:text-white">
+    <div className="text-lg font-bold text-blue-500">Flag Name: <span className="text-black dark:text-white font-normal">Migrate to Stripe API</span></div>
+    <div className="flex items-center space-x-3">
+        <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+        <CopyField value='enableStripe' client:load />
+    </div>
+    <p className="text-lg font-bold text-blue-500">Description: <span className="text-black dark:text-white font-normal">optional, if you would like to add</span></p>
+    <p className="text-lg font-bold text-blue-500">Flag Variations:</p>
+    <p className="text-lg text-black dark:text-white">Boolean</p>
+        <p className="text-lg text-black dark:text-white">Variations:</p>
+        <div className="flex items-center space-x-3">
+    <span className="text-lg ml-8 text-white">true:</span> 
+    <CopyField value='Stripe Checkout Enabled' client:load />
+    </div>
+      <div className="flex items-center space-x-3">
+        <span className="text-lg text-white ml-8">false:</span> 
+        <CopyField value='Stripe Checkout Disabled' client:load />
+        </div>
+                <p className="text-lg font-bold text-blue-500">Advanced Configurations:</p>
+        <div className="flex items-center space-x-3">
+    <span className="text-lg ml-8 text-black dark:text-white"> Check Box for SDKs using Client-side ID</span> 
+    </div>
+</div>
+
+
+## Step 2: Fixing our API Code
+ 
+### Enable the migration in our code
+To complete our migration and ship the new API, first locate the `/src/pages/api/checkout.ts` file in your project. This is the file that handles the API calls for our checkout functionality. Update this file with the code below (hint, look for the comments around line 50).
+
+:::note[Reminder]
+Don't forget to use that handy `copy` button on the top-right side of the code block!
+:::
+
+```jsx title='/src/pages/api/checkout.ts'
+//in this code, we are first retrieving the value for the enableStripe flag, 
+// then, if it returns true, running a function that creates a checkout session in stripe. 
+//If you want to see how that works, take a look at the `/src/utils/checkout-helpers.ts` file.
+
+  if (req.method === 'POST') {
+  const enableStripe = await ldClient.variation("enableStripe", jsonObject, false);
+
+    if (enableStripe) {
+      createCheckoutForStripe(req, res)
+    }
+  } if (req.method === 'GET') {
+    const enableStripe = await ldClient.variation("enableStripe", jsonObject, false);
+  
+    if (enableStripe) {
+      try {
+        res.send("You are good to go!");
+      } catch (error: any) {
+        console.error(error.message);
+      }
+    } else {
+      return res.json("the API is unreachable");
+    }
+  }
+```
+### Test the new billing system
+ Try it out! Enable this flag you just created and then re-enable the "Updated Billing UI" flag from the prior step. Now attempt to add an item to your cart. If everything was configured correctly, you should be able to add items to the cart and see our new checkout screen because you are currently still logged in as a Developer! 🎉
+
+
+:::caution[Having Problems? Troubleshooting!]
+<details>
+<summary className="text-xl"> Something not working? Click here for troubleshooting tips </summary>  
+<p>
+If you are having trouble with this step:
+</p>
+<ul>
+<li>Make sure you have the correct values in your `.env` file for Stripe. If you cannot communicate with the Stripe API, you'll see an error.</li>
+<li>Make sure you copied the API code exactly as is, did you use the copy button or did you select it with your mouse?</li>
+<li>Double check that your flag value is being imported correctly.</li>
+</ul>
+</details>
+:::

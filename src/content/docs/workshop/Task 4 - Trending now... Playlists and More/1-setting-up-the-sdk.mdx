@@ -1,0 +1,42 @@
+---
+sidebar_position: 2
+title: Setting Up Mobile SDKs
+---
+
+## Identify Yourself, Device 
+
+As you may remember from when we introduced our new Toggle product line, LaunchDarkly's custom context capabilities allow us to create and collect different attributes to categorize our end users. More often than not, these attributes will vary from application to application, environment to environment, etc. But in a mobile setting, we often find more consistency in the type of data that developers would like to collect from their applications. To help with this, LaunchDarkly users can automatically configure the SDK to send this attribute data! 
+
+## Step 1: Setting Up a Mobile SDK
+LaunchDarkly supports 25+ SDKs, so whatever language you are coding in, LaunchDarkly works with it. For mobile development, LaunchDarkly supports a number of client-side SDKs for popular mobile languages including: Flutter, React Native, Swift, and more! 
+
+:::tip[LaunchDarkly SDK Types]
+<details>
+<summary>What do you mean by client-side?</summary>
+<p>
+LaunchDarkly supports both client-side, server-side, and edge SDKs, i.e. frontend and backend services. Here's a quick overview of the differences: 
+</p>
+<ul>
+<li><strong>Client-side</strong>: Designed for single-user desktop, mobile, and embedded applications. Usually less secure.</li>
+<li> <strong>Server-side</strong>: Multi-user systems, usually trusted environment, ex: a corporate network or web server.</li>
+<li><strong>Edge</strong>: Layers in content delivery networks (CDNs), think like Akamai, Cloudflare, or Vercel. These SDKs typically are used with a matching CDN integration.</li>
+</ul>
+</details> 
+:::
+
+### Initializing the SDK
+Just like any other application using LaunchDarkly, retrieving mobile attribute data starts with initializing the SDK. This is the code that runs when an application starts up and establishes a connection with LaunchDarkly. This is done through an initialization function, here's an example of how you would do this in a Swift application: 
+
+```jsx title='/lib/main.dart'
+import LaunchDarkly
+
+let config = LDConfig(mobileKey: "mobile-key-123abc", autoEnvAttributes: .enabled)
+```
+
+This config block is doing the following:
+* Importing the LaunchDarkly SDK
+* Calling the LDConfig functional
+* Passing in the client-side SDK Key as `mobileKey`
+* Enabling the collection of attributes
+
+One quick note here, this assumes that you have properly installed the SDK with whichever package manager you are using. If you need help with that, be sure to check out our SDK documentation. 

@@ -1,0 +1,169 @@
+---
+sidebar_position: 2
+title: Creating the First Feature
+---
+
+import CopyField from "../../../../components/copyfield.tsx";
+
+## Releasing Toggle Outfitters - Our First Feature Flag
+
+The code has been deployed and we're ready to release The NEW Toggle Outfitters to the world! A lot of pressure is riding on this release - but at Toggle Outfitters we don't worry about balancing speed of shipping vs the risk of a failed deployment. Because we're using LaunchDarkly, we get full control over both the velocity of releases as well as the stability of them. We can control our risk.
+
+### Step 1: Creating our first feature flag
+
+:::tip[First Time Using Feature Flags?]
+
+<details>
+  <summary> Learn about Flag Types! </summary>
+  <p>
+    Feature flags are a control point for engineering teams to choose how code
+    is executed. In this case, we're going to use feature flags to release new
+    capabilities, migrate systems, collect experiment data, and more! A quick
+    breakdown of the types of flags you can use:
+  </p>
+  <ul>
+    <li>
+      {" "}
+      <strong>Boolean</strong>: This is the flag type that most folks are familiar
+      with. Most often it's used to specify which code block should run: when the
+      flag is set to `true` run this, if it's `false` run something else.{" "}
+    </li>
+    <li>
+      {" "}
+      <strong>String</strong> Sometimes we want to have more choices than just `true/false`.
+      We have have 3 or 4 variations. String flags let us return a string value to
+      the code in order to do something. For instance, say I want to choose a red,
+      blue, or yellow background. I could use a string flag to serve, `red`, `blue`
+      or `yellow`, and render the code accordingly.
+    </li>
+    <li>
+      {" "}
+      <strong>Number</strong> Similar to string flags, but when we want different
+      integer variations. Think like columns or rows in a table.{" "}
+    </li>
+    <li>
+      {" "}
+      <strong>JSON Objects</strong> Using key/value pairs can be helpful when updating
+      code that utilizes variables. Think like updating the region or table name
+      in an API. We can use flags to serve different variations if we're hitting
+      multiple regions or switching between tables.
+    </li>
+  </ul>
+</details>
+:::
+
+Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
+
+### Flag Name and Description
+
+![](@assets/img/first-flag-screen.png)
+
+<div className="text-lg font-bold text-blue-500">
+  Flag Name:{" "}
+  <span className="text-black dark:text-white font-normal">
+    Release Toggle Outfitters Updated Storefront
+  </span>
+</div>
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+  <CopyField value="storeEnabled" client:load />
+</div>
+Then click Next.
+
+### Flag Variations
+
+![](@assets/img/second-flag-screen.png)
+
+Select the `Boolean` option and fill in the variations with this information:
+
+<div className="flex items-center space-x-3">
+<span className="text-lg text-blue-500 font-bold">True:</span>
+<CopyField value='Store Enabled' client:load />
+</div>
+<div className="flex items-center space-x-3">
+<span className="text-lg font-bold text-blue-500">False:</span>
+<CopyField value='Store Disabled' client:load />
+</div>
+<div className="text-lg font-bold text-blue-500">
+Advanced Configurations:{" "}
+<span className="text-black dark:text-white font-normal">Check box for SDKs using Client-side ID</span>
+
+  </div>
+
+:::caution[Important Note!]
+
+When entering the name, a flag key will be automatically generated. The code used in this workshop requires specific **flag keys**. you must use the provided keys or the demo may not work as expected! You can edit the flag keys by pressing the pencil icon.
+
+Also keep this flag process in mind, we'll be using the same steps for future flags unless otherwise noted.
+:::
+
+You might be wondering about the other flag types that you saw when you opened the `Create Flag` menu. We'll be touching on those in later sections.
+
+Once you have created the flag it's ready for launching, but we're going to do one other thing first. Typically when building features, we move them through a series of environments, ex: `dev`, `staging`, and `production`. We can mirror these environments within LaunchDarkly so as features get released, we know they are getting released to the correct place each time.
+
+### Step 2: Creating A Pipeline
+
+Since this is a new capability, we're going to want to deploy the new storefront in our testing environment first. Normally, we'd use a Release Pipeline for this, but since this is a workshop, our LaunchDarkly account only has a testing environment and we cannot create a pipeline without at least two environments.  
+
+For illustrative purposes though, let's walk through how you would create a new pipeline to add our flag to. Start by clicking the "Add Pipeline" button.
+
+![](@assets/img/add-pipeline.png)
+
+You'll see we don't have a pipeline available, so select "Create Pipeline." This will bring you open a new tab with a pipeline. There will be a `Testing Stage` and `Production Stage`. Again, because we only have one environment, we cannot create a pipeline today, but here is what it would look like:
+
+![](@assets/img/create-pipeline.png)
+
+:::tip[It Takes Two]
+<details>
+<summary>Why do we need multiple environments for a pipeline?</summary>
+<p>
+ Think about what the release pipeline looks like in your organization, how many environments do you have? Do you have `dev`, `testing`, `qa`, and `production`? Because of this LaunchDarkly requires that you have at least two phases in a release pipeline **and** that you have a LaunchDarkly environment attached to each phase. The LaunchDarkly project you are using in this workshop only has one environment. So we need add that environment to both stages.  
+</p>
+</details>
+:::
+
+
+After creating your pipeline, you'll see a screen like this:
+
+![](@assets/img/add-flag-pipeline.png)
+
+It's the flag you just created! If we had created this pipeline, this is where we would add it to our newly created pipeline and go from there.
+
+### Step 3: Adding Flag Retrieval
+
+Now that we have our flag configured, it's time to dive into the code. First, locate the `/src/pages/index.tsx` file. Then, we need to remove the comments from the start of line 12 (the comments are the // symbols on the front). This will allow the LaunchDarkly SDK to receive the values for this feature flag.
+
+```jsx title="/src/pages/index.tsx"
+const { storeEnabled } = useFlags();
+```
+
+:::tip[What is useFlags?]
+
+<details>
+  <summary> useFlags and The React SDK </summary>
+  `useFlags` comes from the [LaunchDarkly React SDK](https://docs.launchdarkly.com/sdk/client-side/react/react-web)
+  and is a wrapper (helper) for getting all flags for your current user in the environment.
+  It acts an easy way to quickly get all flags. In this case, we deconstruct the
+  `storeEnabled` flag from the payload, and are able to use it throughout the component.
+</details>
+:::
+
+### Step 4: Adding Our Store Release Code
+
+Add the following line of code in the appropriate place and save the file. Within our application code - you can see the commented lines around line 26 that indicate where to place this updated code:
+
+```jsx title="/src/pages/index.tsx"
+{
+  storeEnabled ? <StoreLaunch /> : <StorePreview />
+}
+```
+
+:::note[Important Note]
+When you are copying these code blocks, make sure that you are using the copy code button in the upper right corner of the code block itself. Selecting the code manually may cause formatting errors or result in missed code.
+:::
+
+At the moment, you should see no changes on your page. Since targeting is disabled on the feature, the default rule isn't serving up the new feature. The code for our change is currently in place, but its disabled behind our feature flag. Go ahead and turn the flag targeting on, confirm that our default rule is set to Enabled, and experience the dark launch of The New Toggle Outfitters.
+
+:::tip[Learning The Model]
+The model of "Create Feature Flag", "Build Code", "Evaluate Feature Flag" is a sequence that you'll use often with LaunchDarkly. As you grow in your usage, you'll use **Release Targeting** to control which users or systems are able to evaluate specific values from your feature flag - but the model will continue to be the same.
+:::

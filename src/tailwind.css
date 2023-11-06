@@ -1,0 +1,118 @@
+/* src/tailwind.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --sl-color-accent-low: #242424;
+    --sl-color-accent: #6a6a6a;
+    --sl-color-accent-high: #c8c8c8;
+    --sl-color-white: #ffffff;
+    --sl-color-gray-1: #eeeeee;
+    --sl-color-gray-2: #c2c2c2;
+    --sl-color-gray-3: #8b8b8b;
+    --sl-color-gray-4: #585858;
+    --sl-color-gray-5: #383838;
+    --sl-color-gray-6: #272727;
+    --sl-color-black: #181818;
+}
+
+/* Light mode colors. */
+:root[data-theme='light'] {
+    --sl-color-accent-low: #d7d7d7;
+    --sl-color-accent: #6b6b6b;
+    --sl-color-accent-high: #323232;
+    --sl-color-white: #181818;
+    --sl-color-gray-1: #272727;
+    --sl-color-gray-2: #383838;
+    --sl-color-gray-3: #585858;
+    --sl-color-gray-4: #8b8b8b;
+    --sl-color-gray-5: #c2c2c2;
+    --sl-color-gray-6: #eeeeee;
+    --sl-color-gray-7: #f6f6f6;
+    --sl-color-black: #ffffff;
+}
+
+.sl-flex.action.primary {
+    background-color: #405bff;
+    font-weight: 500;
+    color: white;
+    border-radius: 0;
+    display: inline-flex;
+    padding: 15px 38px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttons2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: bold;
+    background-color: #405BFF;
+    padding: 10px;
+    margin: 10px;
+    font-size: larger;
+    /* border-radius: 6px; */
+    border-color: transparent;
+}
+
+.ldbutton {
+    display: flex;
+    width: 198px;
+    padding: 14px 28px;
+    justify-content: center;
+    align-items: center;
+    gap: 21px;
+    background-color: #405BFF;
+}
+
+.buttons2:hover {
+    background-color: #4C6BFF;
+    cursor: pointer;
+}
+
+.buttons2:disabled {
+    background-color: #D1D3D4;
+}
+
+.buttons3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #405BFF;
+    margin: 10px;
+    font-size: large;
+    border-radius: 4px;
+    border-color: transparent;
+}
+
+.buttons3:hover {
+    background-color: #405BFF;
+    cursor: pointer;
+}
+
+.buttons4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-color: white;
+    margin: 10px;
+    padding: 10px;
+    font-size: larger;
+    border-radius: 6px;
+    border-color: transparent;
+}
+
+.buttons4:hover {
+    border-color: ghostwhite;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

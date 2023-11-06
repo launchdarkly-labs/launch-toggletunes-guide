@@ -1,0 +1,100 @@
+/* .header {
+  background-color: #000;
+  color: white;
+} */
+
+
+/* Dark mode colors. */
+:root {
+	--sl-color-accent-low: #242424;
+	--sl-color-accent: #6a6a6a;
+	--sl-color-accent-high: #c8c8c8;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #eeeeee;
+	--sl-color-gray-2: #c2c2c2;
+	--sl-color-gray-3: #8b8b8b;
+	--sl-color-gray-4: #585858;
+	--sl-color-gray-5: #383838;
+	--sl-color-gray-6: #272727;
+	--sl-color-black: #181818;
+}
+/* Light mode colors. */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #d7d7d7;
+	--sl-color-accent: #6b6b6b;
+	--sl-color-accent-high: #323232;
+	--sl-color-white: #181818;
+	--sl-color-gray-1: #272727;
+	--sl-color-gray-2: #383838;
+	--sl-color-gray-3: #585858;
+	--sl-color-gray-4: #8b8b8b;
+	--sl-color-gray-5: #c2c2c2;
+	--sl-color-gray-6: #eeeeee;
+	--sl-color-gray-7: #f6f6f6;
+	--sl-color-black: #ffffff;
+
+  .header a {
+      color: black;
+    }
+}
+
+
+div[ec-line] {
+    font-size: 20px;
+}
+
+.site-title {
+  color: white;
+}
+
+h1[id="1"] {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%; /* 31.2px */
+}
+
+strong {
+    color: #7084FF;
+}
+
+.content a {
+  color: #7084FF;
+}
+
+
+.tagline {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 155%; /* 31px */
+}
+
+.sl-flex.action.primary {
+  background-color: #405bff;
+  font-weight: 500;
+  color: white;
+  border-radius: 0;
+  display: inline-flex;
+  padding: 15px 38px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* .main-frame {
+  background-color: #212121;
+} */
+
+/* .sidebar-content {
+  background-color: #212121;
+} */
+
+.sl-banner {
+  background-color: #212121;
+}
+
+.featurecards {
+  margin-top: 1.5rem;
+}

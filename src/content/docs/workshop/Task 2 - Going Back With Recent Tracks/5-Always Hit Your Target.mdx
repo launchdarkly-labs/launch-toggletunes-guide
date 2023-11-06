@@ -1,0 +1,128 @@
+---
+sidebar_position: 6
+title: Hitting Your Release Mark
+---
+
+import styles from "@styles/index.module.css";
+
+export const completeModule = async () => {
+  const response = await fetch('/api/service-2', {
+    method: 'GET',
+    mode: 'cors',
+  });
+  window.location.assign('/docs/Experiement%20and%20Optimize/mission-brief')
+}
+
+We've talked a lot about contexts, but haven't really dove too deeply into what they are. Let's take a moment to understand exactly what a LaunchDarkly context is and how they can really enhance your ability to control user experiences! 
+
+To start, a context is... well anything! Contexts are collections of information from an application group together by a custom kind. Up until this point, we've been using the `user` kind, but a context kind could be whatever you want: `device`, `region`, `organization`, `store`, `car`, `restaurant`, etc. To break it down a little further, here are some key terms:
+
+* **context**: Contexts describe individual people, users, devices, and more.
+* **context kind**: Each context has one `kind` with a unique set of corresponding attributes.
+* **context attributes**: Descriptive information for each `kind`, as an example the `user` kind might have attributes of `name`, `organization`, `email`, and `job_title`
+
+
+Another important concept is **multi-contexts**. Multi-contexts are a group of context `kinds` with their own collection of attributes. Here is an example:
+```json
+// Anna's multi-context
+"context": {
+  "kind": "multi",
+  "user": {
+    "key": "user-key-123abc",
+    "name": "Anna",
+    "email": "anna@globalhealthexample.com",
+    "jobFunction": "doctor"
+    },
+  "organization": {
+    "key": "org-key-123abc",
+    "name": "Global Health Services",
+    "address": {
+      "street": "123 Main Street",
+      "city": "Springfield"
+      }
+    }
+  }
+```
+In this example, we have a multi-context for Anna that consists of a `user` kind and `organization` kind, each with their own set of attributes that can be used for targeting. You might not know it, but you've been using multi-contexts this whole time! Let's explore it in LaunchDarkly.
+
+## Step1: Explore the Contexts List 
+
+To get started, open up your LaunchDarkly Dashboard and select the `Contexts` option: 
+
+![](@assets/img/contexts-sidebar.png)
+
+### Exploring Context Attributes 
+Woah! Where'd all this information come from? These are **context instances**. Context instances refer to any unique combination of one or more contexts that have encountered a feature flag. You've been changing feature flags all day and each of those evaluations is creating different instances. Let's explore this a bit further. Choose any instance, it should open a screen like this:
+
+![](@assets/img/context-instance.png)
+
+### Flag Variations for Contexts
+If you selected one of the contexts that matches the username you were using for the `Developer` you should see some similar info. Specifically the `name` and `inBeta` attributes. These are what we've been using for targeting! On the right, you'll notice our flags and the variations being served on each. Under the `Evaluation reason` column you'll see three different things:
+1. **Off** - This means exactly that, flag targeting is off.
+2. **Default Rule** - This means the variation being served matches the default rule, i.e. no targeting.
+3. **Rule Match** - This means that the variation being served is a result of a rule we created, i.e. the Beta Users received the `Toggles and Goggles` variation. 
+
+### Understanding Multi-Contexts
+Let's keep exploring contexts. The Toggle Outfitters application uses multi-contexts, to see what this looks like, click on the link in the `Instances` section of the context detail page for whatever context you are viewing. It will open a screen similar to the last one, but with a lot more attributes:
+
+```json
+{
+  "kind": "multi",
+  "device": {
+    "key": "3c007266-579f-410b-84e8-53ddb2b5f96a",
+    "mobile_device": false,
+    "operating_system": "Mac OS"
+  },
+  "environment": {
+    "key": "08eea3fa-83cc-4165-ba61-d488b52a0782",
+    "name": "QA Testing"
+  },
+  "location": {
+    "key": "0df8461c-5df4-4d65-9f87-8ba959c76736",
+    "country": "US",
+    "timeZone": "America/Denver"
+  },
+  "session": {
+    "key": "0e618271-3c31-4ed0-b84d-d49ecc780830",
+    "name": "new session",
+    "description": "session data that we use for experimentation"
+  },
+  "user": {
+    "key": "66cbd134-8f65-49f4-a137-3207d9a5b55d",
+    "name": "Toggle",
+    "inBeta": true
+  }
+}
+``` 
+Each of these attributes can be used in any targeting rule, so the user could have different experiences depending on how they are interacting with our application! Here are a few examples:
+
+* We haven't done testing of our webstore on mobile yet, so we create a rule that says if `mobile_device` is true, the webstore is disabled.
+* We're running an experiment and we want a randomized group of users not based on any identifying user information, so we run the experiment based on the `session` context.
+* We're rolling out a new product and there are strict regional regulations, so we want to control by the `country` attribute.
+
+Introducing targeting to everyone has really impressed the Toggle Outfitters leadership team. They blown away by your accomplishments so far. How are you going to follow this up? Serendipitously, while you were in Portugal, you happened to meet a data scientist on a beach in Lisbon who expounded the benefits of using product data to make educated business decisions. As you sipped your Madeira, you wondered if there was some way you could incorporate data science into the Toggle Outfitters site. Fortunately, you can! On to Experimentation!  
+
+
+{/*
+<div style={{paddingBottom: '20px', paddingTop: '20px', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+<button id="Button" className={styles.buttons2} onClick={completeModule}>Complete Module</button>
+</div>
+*/}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

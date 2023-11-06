@@ -1,0 +1,8 @@
+{
+  "label": "Increase Velocity and Stability of Releases ",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Modern software development forces developers to make a choice: move fast and break things or endlessly test each release to reduce risk. LaunchDarkly lets developers move faster, and more confidently by separating deployment from release to control rollouts, recover from errors instantly, and scale modern practices across an organization."
+  }
+}

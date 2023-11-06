@@ -1,0 +1,59 @@
+---
+sidebar_position: 4
+title: Tracking Adoption of Our Application
+---
+
+import styles from "@styles/index.module.css";
+export const completeModule = async () => {
+  const response = await fetch('/api/service-4', {
+    method: 'GET',
+    mode: 'cors',
+  });
+  window.location.assign('/docs/Introduction')
+}
+
+## Who are our users? 
+
+So targeting should certail feel very familiar now. We've used it for internal development, early access programs, geographic rollouts, and now managing feature availability on devices! But LaunchDarkly also provides valuable insights for mobile developers that can be utilized for things like determining when it's time to deprecate an application. 
+
+## Step 1: Gaining insights 
+Time is flying by and our webstore has been released on iOS for about a month now. Let's take a look at how adoption has gone over those last 30 days. On the homescreen, select the `Applications` tab. You'll see a graph like this: 
+
+What you're seeing is a breakdown of adoption across different versions of the application. This is being captured as part of that `ld_application` context kind that we enabled previously. As you can see, while most of our users are on the most recent version on the application, we do have a handful on version 1.0. But why do we need this info? 
+
+## Step 2: Deprecating app versions 
+As we all know, mobile operating systems usually get a major refresh once a year. These changes can have major impacts on the performance of our mobile applications and put a lot of strain on developers to maintain legacy versions. At some point we need retire some of the older codebases, especially when breaking changes occur with the change in operating system.
+
+### Notifying customers
+Since we know which version of our application is running when a user accesses it, it's easy for us to serve them specific content using that information. Luckily, the rest of the mobile development team thought ahead and added a banner popup just for this occassion. Here's an example of what this targeting rule would look like: 
+
+![](@assets/img/unsupported-rule.png)
+
+This rule ensures that our popups display only for users of the ToggleOutfitters mobile app that are running version less than or equal to 1.1. 
+
+### Tracking unsupported usage
+Notifying our users is just the first step. We also want to internally be aware of how many folks are using the the unsupported version of our application. Since we've made the determination to deprecate version 1.1 and earlier of our application, we can mark it as unsupported in LaunchDarkly. 
+
+![](@assets/img/app-version-support.png)
+
+LaunchDarkly's mobile lifecycle assistant helps you keep tabs on usage of both supported and unsupported applications. Knowing who those users are makes it easier for us to transition towards the newer versions.
+
+## Let's Recap
+LaunchDarkly really helped us dive right into the mobile world and gain greater control over the release process. We were able to:
+1. Enable collection of mobile context data
+2. Release our new storefront feature to iOS devices
+3. Review adoption metrics for our application versions
+4. Notify customers about a version deprecation 
+5. Track unsupported application usage in our application dashboard
+
+And with that you've really made an impression at Toggle Outfitters.   
+
+You **improved the stability and velocity of your releases**, **created targeted and personalized experiences for your customers**, **maximized the business impact of the products through experimentation**, and **released mobile features and fixes on your schedule**. 
+
+All and all, not bad for your first day huh? 
+
+{/*
+<div style={{paddingBottom: '20px', paddingTop: '20px', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+<button id="Button" className={styles.buttons2} onClick={completeModule}>Complete Module</button>
+</div>
+*/}

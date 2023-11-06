@@ -1,0 +1,74 @@
+---
+sidebar_position: 6
+title: Bringing it Into Focus
+---
+import styles from "@styles/index.module.css";
+export const completeModule = async () => {
+  const response = await fetch('/api/service-3', {
+    method: 'GET',
+    mode: 'cors',
+  });
+  window.location.assign('/docs/Target%20And%20Personalize/mission-brief')
+}
+
+## Step 1: Understanding Experiment Results
+
+Once you've run some data into this experiment, you should see something like this picture: (don't strain your eyes, we get into the details below)
+
+![](@assets/img/Experimentation-Results.png)
+
+:::tip[Why does my data look different?]
+<details>
+<summary>Results may vary</summary> 
+<p>
+Keep in mind, your results will look differently because they're randomly generated. Re-running this test would give you another set of new data that is likely to be different than what you already have. We're just using this for illustrative purposes.
+</p>
+</details>
+:::
+
+That's a lot to take in, so let's break it down, piece by piece, no stats degree required.
+
+### What the Data Tells Us
+Here we can see what kind of traffic we're taking in our experiment and how users are being divided up across our variations.
+
+![](@assets/img/Experimentation-Traffic.png)
+
+Next, we get this beautiful colorful graph showing us how each variation did in the experiment. While a picture is worth a thousand words, understanding the data helps tell the story.
+
+The `Probability to be best` column gives us a summary, based on the data LaunchDarkly has received so far and based on the variability in that data, LaunchDarkly determined that "Sale" is the stand out winner with an 86% probability to be best.
+
+The `Posterior mean` column (recently re-labeled `Conversion rate` for conversion-type metrics like the ones we are using here) is really interesting too, because everyone wants to know not just who the winner was, but how each variation performed. That column shows us how well each variation performed.
+We can see "Sale" had a 65% chance of clicking "Add to Cart" but that "Special" wasn't far behind.
+
+![](@assets/img/Experimentation-Add-To-Cart-Results.png)
+
+### Comparing our Metrics
+Remember how we said we needed to keep an eye on "Checkout click" too, because we need to make those sales still?
+Let's dissect these results and see how our variations did there too.
+
+You already know what `Probability to be best` and `Posterior mean` (`Conversion rate`) columns tell us, let's see which variations perform best by this dimension.
+
+It looks like "Special" had the best chance of getting someone to click "Checkout" which might make it really tough to decide what to do **if** we didn't have that `Posterior mean` (`Conversion rate`) column!
+
+Thanks to the `Posterior mean` (`Conversion rate`) column, we can see that **every** variation was better than our control or baseline when there was **no** accent label. "Special" really is the favorite there, but we can see that "Sale" and "New" both performed admirably as well so this change **will** help our bottom line.
+
+![](@assets/img/Experimentation-Checkout-Results.png)
+
+Having this type of information makes it a lot easier to make informed decisions about changes to your application! 
+
+### Let's Recap
+
+Using LaunchDarkly you were able to:
+
+1. Created new metrics to track when customers click "Add to Cart" and "Checkout".
+1. Used the LaunchDarkly SDK to send those metrics to LaunchDarkly so we could learn from our customers.
+1. Launched a new experiment to learn which product accent label would drive the most purchases.
+1. Included a guardrail in our experiment to make sure we weren't losing sales with this change.
+1. Saw how easy it was to make sense of our experiment so you can drop that stats class, finally.
+
+
+{/*
+<div style={{paddingBottom: '20px', paddingTop: '20px', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+  <button id="Button" className={styles.buttons2} onClick={completeModule}>Complete Module</button>
+</div>
+*/}

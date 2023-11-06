@@ -1,0 +1,101 @@
+---
+sidebar_position: 3
+title: Release Targeting - Controlling Risk
+---
+
+## Controlling Risk with Release Targeting 
+
+Now that the flag is in place, we can release features instantly to your users by placing the feature behind a flag, giving you the ability to enable to disable in less than 200ms - but if there's an issue with the code, it's still going to be visible to all of our users. So let's fix that using release targeting!
+
+### Step 1: Creating a segment
+
+:::tip[What is a Segment?]
+Segments are collections of users, devices, or any other group that share some sort of common attribute. In this demo, we're going to set up a segment for our internal development team at Toggle Outfitters.
+:::
+
+
+To get started, we're going to create a new segment in LaunchDarkly, select **Segments** from the navigation menu.
+
+![](@assets/img/segments.png)
+
+Next, do the following:
+1. Select the `Create Segment` button.  
+2. Choose the `Build dynamic conditions and rules` option.  
+3. Name the segment `Developers` and click "Save segment".
+4. Choose the `+Add rule` option
+5. Select `Custom` and make a rule with the following options: Context kind: `user`, Attribute: `name`, Operator: `is one of`
+6. Add some usernames to it by creating a rule where the `name` is whatever username you choose, and then save the segment.
+
+It should look like the image below:
+
+![](@assets/img/dev-tester.png)
+
+:::caution
+Make sure you choose a username that you'll remember, so we can log in with it later. Also, important note, **usernames will be case sensitive!** So keep that in mind while choosing one to add to this segment.
+
+Another potential mistake here is entering developer names under the **Individual Targeting** section instead of creating a rule.  Individual targeting matches against user keys (UUIDs), not the name attribute of the users.
+:::
+
+:::tip[Other Segments]
+<details>
+<summary>What were the other options?</summary>
+<p>
+If you noticed, there were two other options for creating the segment -- **Start with a list** and **Sync data from external source**. For some customers, they have segment customer lists that are tracked either manually or through a third-party system. Fortunately, LaunchDarkly also works with these types of segments! No need to recreate them in LaunchDarkly, just let us know who they are. 
+</p>
+</details>
+:::
+
+
+### Step 2: Targeting The Feature Release
+
+Select the `storeEnabled` flag you created previously to enable the new webstore feature from the Feature Flags dashboard in LaunchDarkly. You should see a screen similar to this:
+
+![](@assets/img/1-Flag-Release.png)
+
+We'll need to do the following:
+
+1. Select the `Target Segments` box
+2. Select the `Developers` segment you just created
+3. Under Rollout, choose the `Store Enabled` variation
+4. Change the Default rule to serve `Store Disabled`
+5. Turn targeting on, review and save
+
+Once you do this, you should see no difference in your application. Why? Well because we haven't logged in yet! In the Toggle Outfitters application, choose the `Login` button and use one of the usernames that you added to the `Developers` segment.
+
+If you've logged in, you should see your brand new webstore!
+
+:::caution[Important Note]  
+When using release targeting, make sure you change the default rule. Otherwise, you might be serving all users instead of just your targeting rules!
+
+Also, now that you've logged in with your developer credentials, you'll automatically see future changes that we make. You don't have to log out each time, but if you would like to see the changes happen in real time, feel free to log back in or out with your credentials!
+:::
+
+:::tip[Wait...Testing In Production?!]
+<details>
+<summary>Yes, you read that right.</summary>
+<p> 
+We just tested in production (well, kind of, it's a workshop and our staging environment based on what we said earlier). By using release targeting to control the blast radius of our feature release we were able to release to a small subset of users. If there were any issues, we could quickly disable the feature. This allowed us to protect the experience of our customers, while allowing our developer teams to test against the most relevant environment possible - production.
+
+This also lets us ship faster by reducing the necessary cycles in testing, since testing against real users is always going to yield better results. Remember - this section is all about De-Risking. We're taking care of you!
+</p>
+</details>
+:::
+
+:::caution[Having Issue?]
+<details>
+<summary>Click here for some troubleshooting tips</summary>
+<p>
+If for some reason you don't see the new webstore, make sure you check the following:
+</p>
+
+<ul>
+<li>Are you logged in with the correct username?</li>
+<li>Did you save all your configurations in the flag, including turning on targeting, and reviewed and saved your changes?</li>
+<li>Check the `index.tsx` file to make sure you are both retrieving the flag values and have the correct ternery operator in place for the new component</li>
+</ul>
+</details>
+:::
+
+<p>
+At this point - we've shown how you can quickly enable or disable a feature within 200ms as well as control your blast radius by introducing targeting. These foundational capabilities will enable you to release features fast, with total control over who experiences these changes (or, your risk). So let's take a look at what happens when things go wrong...
+</p>

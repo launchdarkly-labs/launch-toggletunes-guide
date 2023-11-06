@@ -1,0 +1,101 @@
+---
+sidebar_position: 4
+title: Instant Outage Recovery
+---
+
+import {Copy, CheckSquare} from 'lucide-react';
+import CopyField from "../../../../components/copyfield.tsx";
+
+## Recovering From Release Failures 
+So far, we've had some pretty good luck with our release process (_nice going, team!_), but we know that that isn't always how releases go. Part of what makes software releases so worrisome is that if/when something goes wrong, it means bad news for our business. Fortunately, with LaunchDarkly, we can release fearlessly, knowing that we have a safety net in case something bad happens.
+
+## Step 1: Modernizing Our Store
+
+Version 1 of our new webstore is pretty basic. It offers users a "contact us" form where they can inquire about specific toggles and get in touch with our toggle specialists. To respond to the ever growing demand of custom toggles in the market, we've decided to add a new feature to our webstore that will allow customers to purchase toggles directly from our website. We don't want to build this on our own - instead, we want to consume a cloud hosted payment service. Let's roll it out! 
+
+### Create Our Billing UI Feature Flag
+Create a new Release flag in your LaunchDarkly account using the following information:
+
+<div className="flex flex-col space-y-1 text-black dark:text-white">
+    <div className="text-lg font-bold text-blue-500">Flag Name: <span className="text-black dark:text-white font-normal">Updated Billing UI</span></div>
+    <div className="flex items-center space-x-3">
+        <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+        <CopyField value='billing' client:load />
+    </div>
+    <p className="text-lg font-bold text-blue-500">Description: <span className="text-black dark:text-white font-normal">optional, if you would like to add</span></p>
+    <p className="text-lg font-bold text-blue-500">Flag Variations:</p>
+    <p className="text-lg text-black dark:text-white">Boolean</p>
+        <p className="text-lg text-black dark:text-white">Variations:</p>
+        <div className="flex items-center space-x-3">
+    <span className="text-lg ml-8 text-black dark:text-white">true:</span> 
+    <CopyField value='Enable Stripe' client:load />
+    </div>
+      <div className="flex items-center space-x-3">
+        <span className="text-lg text-black dark:text-white ml-8">false:</span> 
+        <CopyField value='Self Hosted' client:load />
+        </div>
+                <p className="text-lg font-bold text-blue-500">Advanced Configurations:</p>
+        <div className="flex items-center space-x-3">
+    <span className="text-lg ml-8 text-black dark:text-white"> Check Box for SDKs using Client-side ID</span> 
+    </div>
+</div>
+
+## Step 2: Update Our Client Code
+
+Within our application, we need to implement the new feature that will be controlled via this `billing` feature flag. Perform the following steps: 
+
+1. Navigate to `/src/components/inventory.tsx`
+2. replace the existing `ReserveButton` code with this code (hint look around line 130):
+
+```jsx title='/src/components/inventory.tsx'
+{
+  billing ? (
+    <AddToCartButton
+      product={product}
+      errorTesting={errorTesting}
+      clickHandler={addToCartClickHandler}
+    />
+  ) : (
+    <ReserveButton
+      setHandleModal={setHandleModal}
+      handleModal={handleModal}
+      handleClickTest={handleClickTest}
+      updateField={updateField}
+      formData={{ name, email }}
+      onButtonClick={onButtonClick}
+    />
+  )
+}
+{
+  billing && (
+    <ErrorDialog errorState={errorState} setErrorState={setErrorState} />
+  )
+}
+```
+
+This code is instructing our application to either provide a new `AddtoCartButton` feature or the existing `ReserveButton` depending on the flag value. When you've saved everything its time to enable our targeting rule, and our new feature!
+
+3. Return to LaunchDarkly and add a rule that targets only the `Developers` segment for this new feature (just like before), and set the default rule to `false`. After you've done that, enable targeting (turn the flag on).
+
+## Step 3: Bugs Happen!
+
+When you return into Toggle Outfitters, you'll notice a new button style for "Add to Cart" has replaced the previous reservation button. You now have an "Add to Cart" button as well as a shopping cart icon in the header. All is looking good! Lets click the button and see what happens...
+
+Oh no!
+
+Unfortunately, buggy code sometimes makes it's way into a release no matter how much you test. We might not even have discovered this until it was released in production! In traditional software delivery scenarios, if the bug is bad enough, this is a rollback or redeployment moment. Then it's sitting for a few hours hoping that rollback pipeline is successful. With LaunchDarkly, we can recover from this failure in seconds.
+
+Go back to LaunchDarkly and switch off the flag and notice that the issue is resolved! And then let's figure out exactly what went wrong... It's time to migrate our first API! 
+
+:::tip[No need to fix it]
+<details>
+<summary>Does a bug exist if no one is around to encounter it?</summary>
+<p> 
+Traditional logic says never to leave broken code in production, but with release targeting, we control the impact. Because we limited the scope of users who could see this new feature using a targeting rule, only our developers are seeing this error. It could be an environment specific issue and testing in production would be really helpful! Since we know customers won't have access to this broken code, we can let the team work on it without impacting our business.
+</p>
+</details>
+:::
+
+## More Than Just Frontend Feature Flags
+
+We need to complete the modernization of the Toggle Outfitters payment system by moving to our new payment processor. To accomplish this, we need to migrate our backend API's to leverage the new billing system. We'll use a backend feature flag to control the migration - giving us the same control over speed and risk that we've enjoyed on our frontend. Let's move our API! 

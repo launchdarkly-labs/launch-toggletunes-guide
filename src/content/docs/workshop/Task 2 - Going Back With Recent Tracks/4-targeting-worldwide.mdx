@@ -1,0 +1,59 @@
+---
+sidebar_position: 5
+title: Release Targeting Goes Worldwide
+---
+
+## Around the world in 80 Seconds
+
+## Step 1: Ready, Aim, Target
+
+Now that the debug tools are in place, you'll update the targeting rules in the `new-product-experience-flag` to target goggles at this region for only the `Developers` segment and remove the `Beta Users` segment.
+Remember, we don't want to accidentally roll out goggles to that region before we get the go ahead!
+
+### Goggles in Portugal
+
+We've got approval to release goggles to Portugal, so let's start by targeting Portugal. Here's the before view of our rollout rule for the new product experience to our `Developers` segment:
+
+![](@assets/img/Targeting-Before-Portugal-Rollout-Rule.png)
+
+### Update the Targeting Rule
+
+Instead of adding a new targeting rule, we're going to add an **AND** to our existing rule, here's how:
+
+1. Click the edit button (the pencil icon) for the rule to edit it and then click the blue plus sign to the right of your rule
+2. Choose the "custom" type
+3. Under `Context kind` select "location"
+4. Under `Attribute` select "country"
+5. Under `Operator` select "is one of" (if it's not already selected)
+6. Under `Values` type "PT" and select "Add PT" if "PT" doesn't come up in the dropdown.
+7. Save your changes.
+
+If you've done it all correctly, your rule should look like this now:
+
+![](@assets/img/Targeting-Portugal-Rollout-Rule.png)
+
+This rule says that a context should be both in the location we've defined and in the `Developers` segment.
+
+## Step 2: Where'd My Goggles Go?
+
+Your goggles are now **only** available when you're in Portugal, or at least when your context is set to Portugal. You should have seen the inventory reload and you no longer see goggles in your product list.
+
+This confirms that outside of Portugal, customers are **not** yet seeing goggles. So naturally, we need to take a trip to Portugal!
+
+:::note[Disclaimer]  
+Toggle Outfitters will not reimburse you for travel expenses incurred.
+:::
+
+### Changing Your Location
+
+Click or hover over the `Debug: Country Override` button to show the selection panel and click `Portugal`. To confirm your country selection is taken up, click the `Debug: App Data` button. You should see something like this:
+
+![](@assets/img/Targeting-Debug-App-Data.png)
+
+> _Portugal has a country code of `PT` as seen above._
+
+### Goggles Are Back!
+
+As soon as you make this change, the list of products should reload and you should have goggles in your inventory again!
+
+Look at that! You've released a webstore, migrated technologies, and travelled to Portugal all on your first day!

@@ -1,0 +1,58 @@
+---
+sidebar_position: 2
+title: New Product Launch
+---
+import { Copy, CheckSquare} from 'lucide-react';
+import CopyField from "../../../../components/copyfield.tsx";
+
+
+## Targeting an Early Access Experience
+Most folks are likely familiar with the concept of a Beta program or Early Access. It's where users can opt-in to get notified about upcoming changes or see early releases. But how do organizations implement these programs and how do we ensure that only those that signed up for the early access program get early access?!
+
+
+### Step 1: Create the New Product Flag
+
+As you might have guessed, we first need to create a flag that will help us slowly roll out our new Goggle product line. Create a release flag with the following values:  
+
+<div className="flex flex-col space-y-1 text-black dark:text-white">
+    <div className="text-lg font-bold text-blue-500">Flag Name: <span className="text-black dark:text-white font-normal">New Product Experience Access</span></div>
+    <div className="flex items-center space-x-3">
+        <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+        <CopyField value='new-product-experience-access' client:load />
+    </div>
+    <p className="text-lg font-bold text-blue-500">Description: <span className="text-black dark:text-white font-normal">optional, if you would like to add</span></p>
+    <p className="text-lg font-bold text-blue-500">Flag Variations:</p>
+    <p className="text-lg text-black dark:text-white">String</p>
+        <p className="text-lg text-black dark:text-white">Variations:</p>
+        <div className="flex items-center space-x-3">
+    <span className="text-lg ml-8 text-black dark:text-white">Variation 1:</span> 
+    <CopyField value='toggle,goggle' client:load />
+    </div>
+      <div className="flex items-center space-x-3">
+        <span className="text-lg text-black dark:text-white ml-8">Variation 2:</span> 
+        <CopyField value='toggle' client:load />
+        </div>
+                <p className="text-lg font-bold text-blue-500">Advanced Configurations:</p>
+        <div className="flex items-center space-x-3">
+    <span className="text-lg ml-8 text-black dark:text-white"> Check Box for SDKs using Client-side ID</span> 
+    </div>
+</div>
+
+:::caution[Important Note]
+This flag key must use dashes instead of camelcase. There are some specific app configurations that require this.
+:::
+
+### Step 2: Create the Beta Segment
+Next we're going to be using segments again, but this time it'll be a little different. We're going to use segments to control user entitlements. To get started, go back to your segments in LaunchDarkly. 
+
+To get started, click on the button to create a new Segment:  
+
+![](@assets/img/create-segment.png)
+
+Create a segment, select the `Build dynamic conditions and rules` option, name it `Beta Users`, and fill out the description however you want and save. When you've created the segment, click "Add rule" under the "Include targets who match these rules" heading, choose the "custom" option and create the following rule and save: 
+
+![](@assets/img/beta-test-rule.png)
+
+Note that you should be able to select `inBeta` as an attribute, and you can manually type in `true` as the value. This rule is going to automatically add any users that opts into our Early Access Beta program. This will let us serve those users specific variations without having to use their actual usernames! We do this by targeting the specific value of an attribute. We'll touch on those in a minute. 
+
+ 

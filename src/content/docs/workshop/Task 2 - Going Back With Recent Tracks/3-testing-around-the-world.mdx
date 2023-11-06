@@ -1,0 +1,146 @@
+---
+sidebar_position: 4
+title: Going Global - Expanding Product Reach
+---
+import {Copy, CheckSquare} from 'lucide-react'; 
+import CopyField from "../../../../components/copyfield.tsx";
+
+
+## Goggles Go Global
+
+## Prepare for Global Domination
+Results of pre-orders from our Early Access testers have been off the charts! Our customers were clearly looking for a one-stop shop for both toggles and goggles! 🎉
+
+Based on this, we're ready to start rolling out our goggle offering. Unfortunately, if you remember from earlier, the goggle market is heavily regulated around the world. We need to make sure that our store is up to regulatory standards **before** we get hit with some hefty fines. Fortunately, LaunchDarkly's targeting capabilities will help us do that! 
+
+## Step 1: Enable Location Changing
+
+If you're still logged in as an Early Access user, make sure you logout before completing these steps, because we want to be sure our operational tools don't show to our customers.
+
+### Add the Debug Menu
+Because we're doing some internal testing, we are only letting our `Developers` see the debug tools we're going to set up. The code for the debug tools is already in place, we just need to target the appropriate segment and turn on the feature to show the tools on the site!
+
+We'll of course need another release flag for these tools. Create a release flag with the following values:  
+
+<div className="flex flex-col space-y-1 text-black dark:text-white">
+    <div className="text-lg font-bold text-blue-500">Flag Name: <span className="text-black dark:text-white font-normal">Custom Debug</span></div>
+    <div className="flex items-center space-x-3">
+        <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+        <CopyField value='devdebug' client:load />
+    </div>
+    <p className="text-lg font-bold text-blue-500">Description: <span className="text-black dark:text-white font-normal">optional, if you would like to add</span></p>
+    <p className="text-lg font-bold text-blue-500">Flag Variations:</p>
+    <p className="text-lg text-black dark:text-white">Boolean</p>
+        <p className="text-lg text-black dark:text-white">Variations:</p>
+        <div className="flex items-center space-x-3">
+    <span className="text-lg ml-8 text-black dark:text-white">True:</span> 
+    <CopyField value='Debug Enabled' client:load />
+    </div>
+      <div className="flex items-center space-x-3">
+        <span className="text-lg text-black dark:text-white ml-8">False:</span> 
+        <CopyField value='Debug Disabled' client:load />
+        </div>
+                <p className="text-lg font-bold text-blue-500">Advanced Configurations:</p>
+        <div className="flex items-center space-x-3">
+    <span className="text-lg ml-8 text-black dark:text-white"> Check Box for SDKs using Client-side ID</span> 
+    </div>
+</div>
+
+### Update Our Code
+Locate the comment block in the `/src/components/menu.tsx` file (line 63-65). It's a pretty sizeable block of code, so again make sure you're using the copy functionality, not highlighting! Here's the code:
+
+```jsx title='/src/components/menu.tsx'
+       {devdebug ? (
+          <NavigationMenu.Item>
+            <NavigationMenuTrigger>
+              <div className="bg-orange-500 p-2 text-white" style={{ width: "160px", height: "40px", alignItems: 'center', display: 'flex' }}>
+                Debug: App Data
+                <CaretDownDebug aria-hidden />
+              </div>
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <List>
+                <ListItem title="Selected Country">{uiCountry}</ListItem>
+                <ListItem title="Product Categories"></ListItem>
+                <ListItem title="Admin Access">
+                  {adminMode ? "Enabled" : "Disabled"}
+                </ListItem>
+                <ListItem title="Billing API">
+                  {billing ? "Enabled" : "Disabled"}
+                </ListItem>
+              </List>
+            </NavigationMenuContent>
+          </NavigationMenu.Item>
+        ) : null}
+        {devdebug ? (
+          <NavigationMenu.Item>
+            <NavigationMenuTrigger>
+            <div className="bg-orange-500 p-2 text-white" style={{ width: "200px", height: "40px", alignItems: 'center', display: 'flex' }}>                Debug: Country Override
+                <CaretDownDebug aria-hidden />
+              </div>
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <List>
+                <ListItem onClick={changeCountry.bind(null, "US")} title="USA">
+                  🇺🇸
+                </ListItem>
+                <ListItem
+                  onClick={changeCountry.bind(null, "MX")}
+                  title="Mexico"
+                >
+                  🇲🇽
+                </ListItem>
+                <ListItem
+                  onClick={changeCountry.bind(null, "CA")}
+                  title="Canada"
+                >
+                  🇨🇦
+                </ListItem>
+                <ListItem
+                  onClick={changeCountry.bind(null, "UK")}
+                  title="United Kingdom"
+                >
+                  🇬🇧
+                </ListItem>
+                <ListItem
+                  onClick={changeCountry.bind(null, "FR")}
+                  title="France"
+                >
+                  🇫🇷
+                </ListItem>
+                <ListItem
+                  onClick={changeCountry.bind(null, "PT")}
+                  title="Portugal"
+                >
+                  🇵🇹
+                </ListItem>
+              </List>
+            </NavigationMenuContent>
+          </NavigationMenu.Item>
+        ) : null}
+```
+We're ready to start using our debug tools! 
+
+:::caution[Important Note]  
+The comment block for this is located right above another comment block that you replaced in the Database Migration section. If you replaced both comments and can't find where this code should go, it should be placed right after line 62, `<NavigationMenuList>`.
+:::
+
+
+## Step 2: Debug Time
+Open the `Customer Debug` feature flag and choose the option to "Target segments". Add a targeting rule to target the `Developers` segment like we did for our `New Product Experience Access` feature. Make sure the Default rule for the feature is set to `Debug Disabled` and that if targeting is off, we're set to serve `Debug Disabled`.
+
+If your setting look like this, you're good to go!
+
+![](@assets/img/Targeting-Debug-Tooling-V2.png)
+
+:::caution[Warning!]   
+Double check that before you log back in, you're not seeing the debug tools. This will confirm we have our targeting right!
+:::
+
+### Changing the Context
+
+Now we need to change our context so we can act as if we're in those different geographic regions we want to roll out to. We're going to use our operational tools to set a location and confirm that targeting is working as expected as we change our region manually. Log back in to the site using your Developer username and you should see these buttons in the toolbar at the top of the page:
+
+![](@assets/img/Targeting-Debug-Buttons.png)
+
+With this menu ready to go, it's time to go worldwide! 
