@@ -1,6 +1,6 @@
 # ToggleTunes Booth Experience Guide 
 
-![ToggleTunes](ToggleTunesFinal.png)
+![ToggleTunes](/public/ToggleTunesFinal.png)
 
 
 This guide is the walkthrough for users who are going through the ToggleTunes booth experience. In this hands-on experience, users will go through 5 tasks in their dev list for launching ToggleTunes
