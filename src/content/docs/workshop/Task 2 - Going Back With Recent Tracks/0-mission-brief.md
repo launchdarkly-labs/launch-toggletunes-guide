@@ -1,28 +1,32 @@
 ---
 sidebar_position: 1
-title: Overview 
+title: Task Two - Going Back with Recent Tracks
 ---
 
-# Time to Hit Our Target
+## Launching our Latest Feature - Playlist History 
 
-Wow, for your first day here at Toggle Outfitters, you're making a big splash already! Thanks to all your hard work in launching the new digital storefront and the modernization to make it possible to serve toggles at scale, Toggle Outfitters has had **remarkable** success. 
+Now that we’ve shown our users what’s possible — they want more features! 
 
-In fact, we've been so successful in selling Toggles, we're ready to expand into new markets with a new product line, Goggles. The competition in the goggles market is stiff. Goggles Outfitters has cornered the market and we want a slice of that goggle action! 
+Based on recent user feedback, DJ Toggle’s dev team built a new feature.  With this new feature — users will be able to select from previous tracks they’ve heard.  
 
-We want to be deliberate with this release, fortunately with LaunchDarkly you can:
-* **Target based on what you know**
-* **Drive better customer engagement**
-* **Let business teams control their audiences**
+The developers have already prepped the code is already ready, but we don’t need to wait for the pipeline. Let’s create our new feature, and release it to the users!
 
-### Now it's your turn
+### Objective\:Another minute, another launch — Create another feature flag!
 
-Targeting is complicated business and the timeline is tight. We can't afford long testing cycles or we'll miss our window to enter this market. If we have to code this targeting logic ourselves, we'll never make it. Let's launch our new line of Goggles, but being careful to roll them out only to users in permitted regions and to our internal team for testing.
+Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
 
-### What You'll Learn
-At the end of this module you'll have gained the following experience:  
+<div className="text-lg font-bold text-blue-500">
+  Flag Name:{" "}
+  <span className="text-black dark:text-white font-normal">
+    Recent Tracks Launch
+  </span>
+</div>
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+  <CopyField value="recentTunes" client:load />
+</div>
 
-* Use feature flags for entitlement programs
-* Retrieve new product data for specific users
-* Create targeting rules for regional rollouts 
-* Gain a better understanding of LaunchDarkly custom contexts
 
+Once this is complete, turn on targeting. Flip back to the site and refresh to check out the brand-new navigation system! 
+
+Task two conquered. 
