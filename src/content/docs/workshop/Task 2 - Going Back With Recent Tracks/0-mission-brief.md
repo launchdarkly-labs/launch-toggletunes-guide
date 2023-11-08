@@ -29,4 +29,4 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
 
 Once this is complete, turn on targeting. Flip back to the site and refresh to check out the brand-new navigation system! 
 
-Task two conquered. 
+Task two conquered. 😎
