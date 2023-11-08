@@ -1,36 +1,32 @@
 ---
 sidebar_position: 1
-title: Overview
+title: Task Three - Dropping (more) Beats, Releasing (even more) Art!
 ---
 
-# Shipping to Learn
+# Migrate and Modernize\: Release the ToggleBeats Backend!  
 
+We’ve got good news: the updated player is a hit. However, with every new release comes new user feedback… and our users want MORE.
 
+More tracks, more album art, and more features to show them off. The ToggleTunes dev team moved this rich data to a scalable database. Instead of waiting 3 months for new beats to drop (mega lame), we can get this data stored in the backend and surfaced on the front end with the power of LaunchDarkly’s Migration flags.
 
-You're coming up on the end of your first day here at Toggle Outfitters and let's just say, **the right people** are noticing the work you've been doing. Thanks to your efforts in our Goggles Worldwide program, we're now crushing the goggles market globally and we've gone on to acquire Goggles Outfitters, making us the largest global distributor of goggles this side of the moon.
+### Objective\: Create a Migration Feature Flag
 
-As you guessed, the work never stops here at Toggle Outfitters, we want to be continuously measuring and improving our products. Using LaunchDarkly we can:
-* **Improve the business performance of every feature**
-* **Run backend and infrastructure optimization experiments**
-* **Accelerate safe innovation at scale** 
+Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
 
-### Hypothesize, Test, Verify
+## ERIN UPDATE THIS SECTION BECAUSE ITS SLIGHTLY DIFFERENT 
+<div className="text-lg font-bold text-blue-500">
+  Flag Name:{" "}
+  <span className="text-black dark:text-white font-normal">
+    Recent Tracks Launch
+  </span>
+</div>
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+  <CopyField value="recentTunes" client:load />
+</div>
 
-Our prediction that the goggles market was hot were proven correct, but our goggle sales are way outpacing our toggles now, which is great, but it's beyond our market estimates. We have the best data analytics team around, they're never wrong, so there's some X factor that is driving goggle sales higher than expected.
+For this feature flag, be sure to edit the cohort settings. Cohort settings enable you to target a specific audience or audience segment. 
 
-Our marketing team has developed a hypothesis that it's the fancy "NEW" label we've put on those goggles that's sending our goggles sales higher. At first they wanted to just add that banner to everything and see if it helped, but we convinced them that probably wouldn't work if we just always labeled **every** product as new. Some of the sheen comes off a special if it's not all that special anymore.
+Today, we will be using the cohort settings to select which groups to apply the “complete” migration step to.  ToggleTunes is for everyone  — let’s go ahead and select 100% of users.
 
-Once we talked them down from calling everything "NEW" all the time, they came up with a more *refined* strategy.
-
-We think that "NEW" seemed to drive a lot of sales, but in some market research, we found that "SALE" and "SPECIAL" resonated very positively and could work as well or better. 
-
-Your task is to implement this experiment with LaunchDarkly to verify or disprove this hypothesis.
-
-### What You'll Learn
-
-At the end of this module, you'll have gained the following experience:
-* Creating a new custom metric in LaunchDarkly
-* Updating our application to collect data for that metric
-* Building and running an experiment in LaunchDarkly
-* Simulating live traffic for the experiment
-* Learning to interpret result and select a winning variation
+Save, release, then let the beats drop! Our users migrate seamlessly over to the ToggleBeats API and database instantly. The new music and album art is now available for all.
