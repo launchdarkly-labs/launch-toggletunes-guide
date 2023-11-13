@@ -1,0 +1,40 @@
+---
+sidebar_position: 1
+title: Task Four - Playlist, Trending Now, and More
+---
+import CopyField from "../../../../components/copyfield.tsx";
+
+## Continuous Release\: Shipping New Playlists and Trending Hits!
+With all these new tracks, our users want to have access to curated playlists as well as improved discovery features helping them discover the hottest new tracks.
+
+Our brilliant team developed the very advanced ToggleAI, enabling users to access curated playlists and new discovery features.
+
+Let’s ship these features, and keep the good vibes rollin’.
+
+### Objective\: New Feature Flag
+Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
+
+### Flag Variations
+
+<div className="text-lg font-bold text-blue-500">
+  Flag Name:{" "}
+  <span className="text-black dark:text-white font-normal">
+    Playlists and Trending Hits
+  </span>
+</div>
+
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+  <CopyField value="userplaylist" client:load />
+</div>
+
+<div className="text-lg font-bold text-blue-500">
+  Default Targeting{" "}
+  <span className="text-black dark:text-white font-normal">
+    when "On" is "Available"
+  </span>
+</div>
+
+With this feature enabled, we have revolutionized how our users curate and discover their sick beats.Playlists, Trending hits, and our recent tunes are all at our user's fingertips.
+
+No downtime, no risks — just good vibes and launches.
