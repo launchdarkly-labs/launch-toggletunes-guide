@@ -70,9 +70,18 @@ When entering the name, a flag key will be automatically generated. The code use
 Also keep this flag process in mind, we'll be using the same steps for future flags unless otherwise noted.
 :::
 
+At the moment, you should see no changes on your page. Since targeting is disabled on the feature, the default rule isn't serving up the new feature. The code for our change is in place, but its currently disabled behind our feature flag. 
 
+Hop back to the feature flag screen, and turn that toggle on! Confirm the feature has been released by seeing the changes happen in real time on teh screen.
 
-At the moment, you should see no changes on your page. Since targeting is disabled on the feature, the default rule isn't serving up the new feature. The code for our change is currently in place, but its disabled behind our feature flag. 
+{/* I added a gif here for showing where the toggle button is, feel free to adjust where needed.  Figured Images > words */ }
 
-Hop back to the  confirm that our default rule is set to Enabled, and experience the dark launch of The New Toggle Outfitters.
-
+<div className="grid mx-auto">
+  <div key="1" className="flex justify-center items-center featurecards">
+    <img
+      src="/src/assets/img/toggleon.gif"
+      className="max-w-full max-h-full "
+      role="img"
+    />
+  </div>
+</div>
