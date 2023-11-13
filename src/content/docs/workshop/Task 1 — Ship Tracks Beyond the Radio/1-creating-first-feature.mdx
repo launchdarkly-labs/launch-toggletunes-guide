@@ -1,58 +1,17 @@
 ---
 sidebar_position: 2
-title: Task One - Ship Tracks Beyond the Radio
+title: Task 1 - Ship Tracks Beyond the Radio
 ---
 
 import CopyField from "../../../../components/copyfield.tsx";
 
-## Release the New Player Without the Risk
+##  Release the New Player Without the Risk
 
 
 DJ Toggle wants to give power back to the users! They want to enable a new track selector that allows users to select the songs they want to hear. Previously it would take weeks to ship a new version of ToggleTunes. 
 Now, with the help of LaunchDarkly, new features can go live almost instantly, and be rolled back just as fast, heaven forbid something goes wrong.  
 
 No new installs. No big reloads. Let’s get ship done! 
-
-:::tip[First Time Using Feature Flags?]
-
-<details>
-  <summary> Learn about Flag Types! </summary>
-  <p>
-    Feature flags are a control point for engineering teams to choose how code
-    is executed. In this case, we're going to use feature flags to release new
-    capabilities, migrate systems, collect experiment data, and more! A quick
-    breakdown of the types of flags you can use:
-  </p>
-  <ul>
-    <li>
-      {" "}
-      <strong>Boolean</strong>: This is the flag type that most folks are familiar
-      with. Most often it's used to specify which code block should run: when the
-      flag is set to `true` run this, if it's `false` run something else.{" "}
-    </li>
-    <li>
-      {" "}
-      <strong>String</strong> Sometimes we want to have more choices than just `true/false`.
-      We have have 3 or 4 variations. String flags let us return a string value to
-      the code in order to do something. For instance, say I want to choose a red,
-      blue, or yellow background. I could use a string flag to serve, `red`, `blue`
-      or `yellow`, and render the code accordingly.
-    </li>
-    <li>
-      {" "}
-      <strong>Number</strong> Similar to string flags, but when we want different
-      integer variations. Think like columns or rows in a table.{" "}
-    </li>
-    <li>
-      {" "}
-      <strong>JSON Objects</strong> Using key/value pairs can be helpful when updating
-      code that utilizes variables. Think like updating the region or table name
-      in an API. We can use flags to serve different variations if we're hitting
-      multiple regions or switching between tables.
-    </li>
-  </ul>
-</details>
-:::
 
 ### Objective: Create the project’s first feature flag in LaunchDarkly
 
@@ -79,17 +38,25 @@ Select the `Boolean` option and fill in the variations with this information:
 
 <div className="flex items-center space-x-3">
 <span className="text-lg text-blue-500 font-bold">True:</span>
-<CopyField value='Store Enabled' client:load />
+<CopyField value='Available' client:load />
 </div>
+
 <div className="flex items-center space-x-3">
 <span className="text-lg font-bold text-blue-500">False:</span>
-<CopyField value='Store Disabled' client:load />
+<CopyField value='Unavailable' client:load />
 </div>
+
+<div className="text-lg font-bold text-blue-500">
+Default variations:{" "}
+<span className="text-black dark:text-white font-normal">Set to serve 'Available' when targeting is ON</span>
+
+</div>
+
 <div className="text-lg font-bold text-blue-500">
 Advanced Configurations:{" "}
 <span className="text-black dark:text-white font-normal">Check box for SDKs using Client-side ID</span>
 
-  </div>
+</div>
 
 Turn on targeting to enable the new features and see the changes within the ToggleTunes interface! 
 
@@ -105,8 +72,7 @@ Also keep this flag process in mind, we'll be using the same steps for future fl
 
 
 
-At the moment, you should see no changes on your page. Since targeting is disabled on the feature, the default rule isn't serving up the new feature. The code for our change is currently in place, but its disabled behind our feature flag. Go ahead and turn the flag targeting on, confirm that our default rule is set to Enabled, and experience the dark launch of The New Toggle Outfitters.
+At the moment, you should see no changes on your page. Since targeting is disabled on the feature, the default rule isn't serving up the new feature. The code for our change is currently in place, but its disabled behind our feature flag. 
 
-:::tip[Learning The Model]
-The model of "Create Feature Flag", "Build Code", "Evaluate Feature Flag" is a sequence that you'll use often with LaunchDarkly. As you grow in your usage, you'll use **Release Targeting** to control which users or systems are able to evaluate specific values from your feature flag - but the model will continue to be the same.
-:::
+Hop back to the  confirm that our default rule is set to Enabled, and experience the dark launch of The New Toggle Outfitters.
+
