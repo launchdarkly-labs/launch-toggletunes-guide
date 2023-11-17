@@ -7,12 +7,10 @@ import CopyField from "../../../../components/copyfield.tsx";
 
 ## Targeting Exclusive Experiences for our VIP Users
 
-Thanks to your help, ToggleTunes is now one of the most popular music applications! Let’s celebrate by rewarding our most loyal subscribers with even more new features!
+Thanks to your help, ToggleTunes is now one of the most popular music applications! Let's celebrate by rewarding our most loyal subscribers with exciting new features! DJ Toggle is launching a new platinum experience that offers new books, concerts, and more!
 
-DJ Toggle aims to please, and is sharing the love (and new platinum experience) with the most loyal subscribers. The platinum experience offers new books, concerts, and more!
-
-### Objective\: Launch the Platinum Experience to our VIPs using LaunchDarkly’s Segment Builder.
-Launch these platinum experiences to the most loyal of subscribers using LaunchDarkly’s Segment Builder. We’ll start by creating a segment for our platinum users. Next, we’ll set up the logic which sets up when these experiences are launched. Finally, we’ll ship these experiences to our VIPs and start the celebrations.
+### Objective\: Launch the Platinum Experience to our VIPs using LaunchDarkly's Segment Builder.
+Launch these platinum experiences to the most loyal of subscribers using LaunchDarkly's Segment Builder. We'll start by creating a segment for our platinum users. Next, we'll set up the logic which sets up when these experiences are launched. Finally, we'll ship these experiences to our VIPs and start the celebrations.
 
 ### Creating a New Segment
 
@@ -25,7 +23,7 @@ Before creating your flags, create a new segment by selecting **'Create Segment'
   </span>
 </div>
 
-Once the segment is saved, select **'Add Rule'**, Select **'Custom'** and later an attribute of "tier", in the Operator dropdown, choose **'is one of'** and enter **'Platinum'** for the value. Save your selection and move on to the next step.
+Once the segment is saved, select **'Add Rule'** and select **'Custom'**. Add the attribute of "tier" and then, in the Operator dropdown, choose **'is one of'** and enter **'Platinum'** for the value. Save your selection and move on to the next step.
 
 ### Flag Variations
 Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
@@ -39,7 +37,7 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
 
 <div className="flex items-center space-x-3">
   <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
-  <CopyField value="platinumTier" client:load />
+  <CopyField value="platinumtier" client:load />
 </div>
 
 <div className="text-lg font-bold text-blue-500">
@@ -49,16 +47,16 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
   </span>
 </div>
 
-Now, we’re ready to target our users.
+Now, we're ready to target our users.
 
 This feature will be toggled “off” for most of our users.  However, the “Platinum User” segment we set up in a previous set will be able to access these experiences by targeting these users specifically upon release.
 
 ### Targeting Specific Users
 
-Select **'Target Segments'**, and within the segment rules, select our **'Platinum Users'** segment.
+On the flag details page for our new flag, select **'Target Segments'**, and within the segment rules, select our **'Platinum Users'** segment.
 
-Ensure the serve section is set to **'Available'** enable the feature and save the changes.
+Ensure the serve section is set to **'Available'** enable the feature and save the changes. Finally, turn the flag to on.
 
 With our toggle and serve section set to “Available” and our segments targeted correctly, Platinum users receive product access to our exclusive experiences. Bonus points for not breaking a sweat or writing a single line of code in the process.
 
-Today, ToggleTunes VIPs enjoy the perks of DJ Toggle’s concert and new ToggleTunes audio books — soon, we’ll be we’ll launch tickets to the upcoming Jen Velocity “Ages” tour - an experience that’s proven impossible to get tickets to!
+ToggleTunes VIPs now enjoy the perks of DJ Toggle's concert and new ToggleTunes audio books — soon, we'll be able to launch tickets to the upcoming Jen Velocity “Ages” tour - an experience that's proven impossible to get tickets to!
