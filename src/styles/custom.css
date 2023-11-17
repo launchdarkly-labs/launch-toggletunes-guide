@@ -3,44 +3,42 @@
   color: white;
 } */
 
-
 /* Dark mode colors. */
 :root {
-	--sl-color-accent-low: #242424;
-	--sl-color-accent: #6a6a6a;
-	--sl-color-accent-high: #c8c8c8;
-	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #eeeeee;
-	--sl-color-gray-2: #c2c2c2;
-	--sl-color-gray-3: #8b8b8b;
-	--sl-color-gray-4: #585858;
-	--sl-color-gray-5: #383838;
-	--sl-color-gray-6: #272727;
-	--sl-color-black: #181818;
+  --sl-color-accent-low: #242424;
+  --sl-color-accent: #6a6a6a;
+  --sl-color-accent-high: #c8c8c8;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #eeeeee;
+  --sl-color-gray-2: #c2c2c2;
+  --sl-color-gray-3: #8b8b8b;
+  --sl-color-gray-4: #585858;
+  --sl-color-gray-5: #383838;
+  --sl-color-gray-6: #272727;
+  --sl-color-black: #181818;
 }
 /* Light mode colors. */
-:root[data-theme='light'] {
-	--sl-color-accent-low: #d7d7d7;
-	--sl-color-accent: #6b6b6b;
-	--sl-color-accent-high: #323232;
-	--sl-color-white: #181818;
-	--sl-color-gray-1: #272727;
-	--sl-color-gray-2: #383838;
-	--sl-color-gray-3: #585858;
-	--sl-color-gray-4: #8b8b8b;
-	--sl-color-gray-5: #c2c2c2;
-	--sl-color-gray-6: #eeeeee;
-	--sl-color-gray-7: #f6f6f6;
-	--sl-color-black: #ffffff;
+:root[data-theme="light"] {
+  --sl-color-accent-low: #d7d7d7;
+  --sl-color-accent: #6b6b6b;
+  --sl-color-accent-high: #323232;
+  --sl-color-white: #181818;
+  --sl-color-gray-1: #272727;
+  --sl-color-gray-2: #383838;
+  --sl-color-gray-3: #585858;
+  --sl-color-gray-4: #8b8b8b;
+  --sl-color-gray-5: #c2c2c2;
+  --sl-color-gray-6: #eeeeee;
+  --sl-color-gray-7: #f6f6f6;
+  --sl-color-black: #ffffff;
 
   .header a {
-      color: black;
-    }
+    color: black;
+  }
 }
 
-
 div[ec-line] {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .site-title {
@@ -55,13 +53,12 @@ h1[id="1"] {
 }
 
 strong {
-    color: #7084FF;
+  color: #7084ff;
 }
 
 .content a {
-  color: #7084FF;
+  color: #7084ff;
 }
-
 
 .tagline {
   font-size: 18px;
@@ -82,7 +79,6 @@ strong {
   gap: 10px;
 }
 
-
 /* .main-frame {
   background-color: #212121;
 } */
@@ -97,4 +93,71 @@ strong {
 
 .featurecards {
   margin-top: 1.5rem;
+}
+
+.greycard {
+  background: var(
+    --Card-gradient,
+    linear-gradient(201deg, #58595b -25.37%, #212121 75.5%)
+  );
+}
+
+.greengradient {
+  background: linear-gradient(225deg, #ebff38 -7.08%, #3dd6f5 90.68%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cardheadertext {
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 40.114px */
+  letter-spacing: 4.011px;
+  text-transform: uppercase;
+}
+
+@font-face {
+  font-family: "Sohne";
+  src: url("/fonts/sohne.otf");
+}
+
+@font-face {
+  font-family: "Sohne Mono";
+  src: url("/fonts/sohne-mono.otf");
+}
+
+@font-face {
+  font-family: "Audimat";
+  src: url("/fonts/Audimat3000-Regulier.otf");
+}
+
+.cardthing {
+  display: flex;
+width: 471px;
+padding: 40px 3px 40px 39px;
+align-items: flex-end;
+align-content: flex-end;
+gap: 205px 21px;
+flex-wrap: wrap;
+}
+
+.cardbodytext {
+  color: var(--grayscale-white-00, var(--insights-white-0, #fff));
+  leading-trim: both;
+  text-edge: cap;
+  font-family: Sohne;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 50.4px */
+}
+
+.cardlowertext {
+  color: var(--grayscale-gray-03, #D1D3D4);
+font-family: Sohne;
+font-size: 22px;
+font-style: normal;
+font-weight: 400;
+line-height: 155%; /* 34.1px */
 }
