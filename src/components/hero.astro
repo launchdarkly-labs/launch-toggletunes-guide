@@ -21,119 +21,71 @@ const imageAttrs = {
       <img src="/ToggleTunes.png" class="h-10" />
     </div>
     <div class="flex flex-col justify-center h-full">
-      <p class="text-3xl text-white">Ship DJ Toggle's new music app the fastest</p>
+      <p class="text-3xl text-white">
+        Ship DJ Toggle's new music app the fastest
+      </p>
       <p class="pt-8 text-white">Get ready to get ship done!</p>
     </div>
   </div>
-  <div class="h-[300px] w-[300px]">
-    <a href="/workshop/task-1/1-creating-first-feature/">
-    <img src="/task1.png" class="h-[300px] w-[300px]" />
-  </a>
+  <div class="relative h-[300px] w-[300px] bg-cardgrey">
+    <a href="/workshop/task-1/1-creating-first-feature/" class="no-underline">
+      <img src="/note.png" class="absolute top-0 right-0" />
+      <p class="tasktext text-gradient mt-6 ml-4 text-[22px] font-sohne uppercase">Task # 1</p>
+      <div class="absolute bottom-5 mx-4">
+        <p class="cardbodytext w-2/3 pb-4">Track Selector</p>
+        <p class="cardbottomtext text-white">
+          Your first feature flag, launching the new track selection
+        </p>
+      </div>
+    </a> 
   </div>
 
-  <div class="h-[300px] w-[300px]">
-    <a href="/workshop/task-2/0-mission-brief/">
-    <img src="/task2.png" class="h-[300px] w-[300px]" />
-  </a>
+  <div class="relative h-[300px] w-[300px] bg-cardgrey">
+    <a href="/workshop/task-2/0-mission-brief/" class="no-underline">
+      <img src="/rotate.png" class="absolute top-0 right-0" />
+      <p class="tasktext text-gradient mt-6 ml-4 text-[22px] font-sohne uppercase">Task # 2</p>
+      <div class="absolute bottom-5 mx-4">
+        <p class="text-white cardbodytext w-2/3 pb-4">Track History</p>
+        <p class="cardbottomtext text-white">
+          Ramping up and releasing our new track history selector 
+        </p>
+      </div>
+    </a> 
   </div>
-  <div class="h-[300px] w-[300px]">
-    <a href="/workshop/task-3/0-mission-brief/">
-    <img src="/task3.png" class="h-[300px] w-[300px]" />
-  </a>
+  <div class="relative h-[300px] w-[300px] bg-cardgrey">
+    <a href="/workshop/task-3/0-mission-brief/" class="no-underline">
+      <img src="/space.png" class="absolute top-0 right-0" />
+      <p class="tasktext text-gradient mt-6 ml-4 text-[22px] font-sohne uppercase">Task # 3</p>
+      <div class="absolute bottom-5 mx-4">
+        <p class="text-white cardbodytext w-2/3 pb-4">Beats Migration</p>
+        <p class="cardbottomtext text-white">
+          Ship our new database for bigger scale, new songs, and art!
+        </p>
+      </div>
+    </a> 
   </div>
-  <div class="h-[300px] w-[300px]">
-    <a href="/workshop/task-4/1-playlists_trendingnow_more/">
-    <img src="/task4.png" class="h-[300px] w-[300px]" />
-  </a>
+  <div class="relative h-[300px] w-[300px] bg-cardgrey">
+    <a href="/workshop/task-4/1-playlists_trendingnow_more/" class="no-underline">
+      <img src="/play.png" class="absolute top-0 right-0" />
+      <p class="tasktext text-gradient mt-6 ml-4 text-[22px] font-sohne uppercase">Task # 4</p>
+      <div class="absolute bottom-5 mx-4">
+        <p class="text-white cardbodytext w-2/3 pb-4">Lists and Trends</p>
+        <p class="cardbottomtext text-white">
+          Release our new playlistas and trending hits features
+        </p>
+      </div>
+    </a> 
   </div>
-  <div class="h-[300px] w-[300px]">
-    <a href="/workshop/task-5/1-premium-feature-platinum/">
-    <img src="/task5.png" class="h-[300px] w-[300px]" />
-  </a>
+  <div class="relative h-[300px] w-[300px] bg-cardgrey">
+    <a href="/workshop/task-5/1-premium-feature-platinum/" class="no-underline">
+      <img src="/sparkle.png" class="absolute top-0 right-0" />
+      <p class="tasktext text-gradient mt-6 ml-4 text-[22px] font-sohne uppercase">Task # 5</p>
+      <div class="absolute bottom-5 mx-4">
+        <p class="text-white cardbodytext w-2/3 pb-4">Going Platinum</p>
+        <p class="cardbottomtext text-white">
+          Target our users with vip offers and experience 
+        </p>
+      </div>
+    </a> 
   </div>
 </div>
-
-<style>
-  .hero {
-    display: grid;
-    align-items: center;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-  }
-
-  .hero > img,
-  .hero > .hero-html {
-    object-fit: contain;
-    width: min(70%, 20rem);
-    height: auto;
-    margin-inline: auto;
-  }
-
-  .stack {
-    flex-direction: column;
-    gap: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);
-    text-align: center;
-  }
-
-  .copy {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .copy > * {
-    max-width: 50ch;
-  }
-
-  h1 {
-    font-size: clamp(
-      var(--sl-text-3xl),
-      calc(0.25rem + 5vw),
-      var(--sl-text-6xl)
-    );
-    line-height: var(--sl-line-height-headings);
-    font-weight: 600;
-    color: var(--sl-color-white);
-  }
-
-  .tagline {
-    font-size: clamp(
-      var(--sl-text-base),
-      calc(0.0625rem + 2vw),
-      var(--sl-text-xl)
-    );
-    color: var(--sl-color-gray-2);
-  }
-
-  .actions {
-    gap: 1rem 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  @media (min-width: 50rem) {
-    .hero {
-      grid-template-columns: 7fr 4fr;
-      gap: 3%;
-      padding-block: clamp(2.5rem, calc(1rem + 10vmin), 10rem);
-    }
-
-    .hero > img,
-    .hero > .hero-html {
-      order: 2;
-      width: min(100%, 25rem);
-    }
-
-    .stack {
-      text-align: start;
-    }
-
-    .copy {
-      align-items: flex-start;
-    }
-
-    .actions {
-      justify-content: flex-start;
-    }
-  }
-</style>

@@ -132,14 +132,30 @@ strong {
   src: url("/fonts/Audimat3000-Regulier.otf");
 }
 
+.tasktext {
+  font-family: "Sohne Mono";
+  padding-bottom: 1rem;
+  letter-spacing: 0.075em;
+  /* background: linear-gradient(126.73deg, #38c7e4 72.44%, #eaff38 -2.64%); */
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; */
+}
+
+.text-gradient {
+  background: linear-gradient(188deg, #EBFF38 -7.08%, #3DD6F5 90.68%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .cardthing {
   display: flex;
-width: 471px;
-padding: 40px 3px 40px 39px;
-align-items: flex-end;
-align-content: flex-end;
-gap: 205px 21px;
-flex-wrap: wrap;
+  width: 471px;
+  padding: 40px 3px 40px 39px;
+  align-items: flex-end;
+  align-content: flex-end;
+  gap: 205px 21px;
+  flex-wrap: wrap;
 }
 
 .cardbodytext {
@@ -147,17 +163,17 @@ flex-wrap: wrap;
   leading-trim: both;
   text-edge: cap;
   font-family: Sohne;
-  font-size: 28px;
+  font-size: 23px;
   font-style: normal;
   font-weight: 500;
   line-height: 120%; /* 50.4px */
 }
 
 .cardlowertext {
-  color: var(--grayscale-gray-03, #D1D3D4);
-font-family: Sohne;
-font-size: 22px;
-font-style: normal;
-font-weight: 400;
-line-height: 155%; /* 34.1px */
+  color: var(--grayscale-gray-03, #d1d3d4);
+  font-family: Sohne;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 155%; /* 34.1px */
 }

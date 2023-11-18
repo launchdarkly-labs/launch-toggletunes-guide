@@ -20,9 +20,7 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
 Select the `Boolean` option and fill in the variations with this information:
 <div className="text-lg font-bold text-blue-500">
   Flag Name:{" "}
-  <span className="text-black dark:text-white font-normal">
-    Recent Tracks Launch
-  </span>
+  <CopyField value=" Recent Tracks Launch" client:load />
 </div>
 
 <div className="flex items-center space-x-3">
@@ -30,28 +28,11 @@ Select the `Boolean` option and fill in the variations with this information:
   <CopyField value="recenttunes" client:load />
 </div>
 
-<div className="flex items-center space-x-3">
-<span className="text-lg text-blue-500 font-bold">True:</span>
-<CopyField value='Available' client:load />
-</div>
-
-<div className="flex items-center space-x-3">
-<span className="text-lg font-bold text-blue-500">False:</span>
-<CopyField value='Unavailable' client:load />
-</div>
-
 <div className="text-lg font-bold text-blue-500">
 Default variations:{" "}
 <span className="text-black dark:text-white font-normal">Set to serve 'Available' when targeting is ON</span>
 
 </div>
-
-<div className="text-lg font-bold text-blue-500">
-Advanced Configurations:{" "}
-<span className="text-black dark:text-white font-normal">Check box for SDKs using Client-side ID</span>
-
-</div>
-
 
 Once this is complete, turn on targeting. Flip back to the site and refresh to check out the brand-new navigation system! 
 
