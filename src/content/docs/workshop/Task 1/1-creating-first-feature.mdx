@@ -23,7 +23,7 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
 <div className="text-lg font-bold text-blue-500">
   Flag Name:{" "}
   <span className="text-black dark:text-white font-normal">
-    Selectable Tunes Track Launch
+    <CopyField value="Selectable Tunes Track Launch" client:load />
   </span>
 </div>
 <div className="flex items-center space-x-3">
@@ -35,52 +35,11 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
 
 Select the `Boolean` option and fill in the variations with this information:
 
-<div className="flex items-center space-x-3">
-<span className="text-lg text-blue-500 font-bold">True:</span>
-<CopyField value='Available' client:load />
-</div>
-
-<div className="flex items-center space-x-3">
-<span className="text-lg font-bold text-blue-500">False:</span>
-<CopyField value='Unavailable' client:load />
-</div>
-
 <div className="text-lg font-bold text-blue-500">
 Default variations:{" "}
 <span className="text-black dark:text-white font-normal">Set to serve 'Available' when targeting is ON</span>
-
-</div>
-
-<div className="text-lg font-bold text-blue-500">
-Advanced Configurations:{" "}
-<span className="text-black dark:text-white font-normal">Check box for SDKs using Client-side ID</span>
-
 </div>
 
 Turn on targeting to enable the new features and see the changes within the ToggleTunes interface! 
 
 You're on the board! The new track selector is live in less than 200ms! 
-
-
-:::caution[Important Note!]
-
-When entering the name, a flag key will be automatically generated. The code used in this workshop requires specific **flag keys**. you must use the provided keys or the demo may not work as expected! You can edit the flag keys by pressing the pencil icon.
-
-Also keep this flag process in mind, we'll be using the same steps for future flags unless otherwise noted.
-:::
-
-At the moment, you should see no changes on your page. Since targeting is disabled on the feature, the default rule isn't serving up the new feature. The code for our change is in place, but its currently disabled behind our feature flag. 
-
-Hop back to the feature flag screen, and turn that toggle on! Confirm the feature has been released by seeing the changes happen in real time on the screen.
-
-{/* I added a gif here for showing where the toggle button is, feel free to adjust where needed.  Figured Images > words */ }
-
-<div className="grid mx-auto">
-  <div key="1" className="flex justify-center items-center featurecards">
-    <img
-      src="/src/assets/img/toggleon.gif"
-      className="max-w-full max-h-full "
-      role="img"
-    />
-  </div>
-</div>
