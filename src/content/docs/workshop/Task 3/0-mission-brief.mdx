@@ -13,13 +13,13 @@ The updated player is a hit and our users want MORE – more tracks, more album
 
 Open your LaunchDarkly project and click `create flag`, choose the `Migration` option and then follow these steps:
 
-### Task 5 - Releasing Features at Platinum Tier Variations
+### Flag Variations
 
-<div className="text-lg font-bold text-blue-500">
-  Flag Name:{" "}
-  <span className="text-black dark:text-white font-normal">
-    ToggleBeats DB Migration
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">
+    Flag Name:{" "}
   </span>
+    <CopyField value="newtoggledb" client:load />
 </div>
 
 <div className="flex items-center space-x-3">
@@ -27,18 +27,28 @@ Open your LaunchDarkly project and click `create flag`, choose the `Migration` o
   <CopyField value="newtoggledb" client:load />
 </div>
 
-<div className="text-lg font-bold text-blue-500">
-  Number of Stages:{" "}
-  <span className="text-black dark:text-white font-normal">
-    2 Stages
+<div className="flex items-center space-x-3">
+ 
+  <span className="text-lg text-blue-500 font-bold">
+     Number of Stages:{" "}
   </span>
+  2
 </div>
 
-For this feature flag, be sure to edit the cohort settings. Cohort settings enable you to target a specific audience or audience segment.
+<div className="flex items-center space-x-3">
+ 
+  <span className="text-lg text-blue-500 font-bold">
+     Cohort Settings:
+  </span>
+  Edit the default cohort to be 100% complete
+</div>
+
+
+For this feature flag, be sure to edit the Cohort Settings. Cohort Settings enable you to target a specific audience or audience segment.
 
 Today, we will be using the cohort settings to select which groups to apply the “complete” migration step to.  ToggleTunes is for everyone  — let’s go ahead and select 100% of users.
 
-Edit the corhort settings and set the "Default corhort" to 100% complete (from 0 complete) 
+Edit the Cohort Settings to have the "Default Cohort" to 100% complete (from 0 complete) 
 
 <img src='/src/assets/img/cohort.png' />
 
