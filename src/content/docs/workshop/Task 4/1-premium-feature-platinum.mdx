@@ -1,25 +1,25 @@
 ---
 sidebar_position: 1
-title: Task Four - Using AI, Generate Your Own Playlist
+title: Task Four - Using AI, Generate Your Own Playlist along with Release Guardian for Protection
 ---
 
 import CopyField from "../../../../components/copyfield.tsx";
 
-## Controlling ToggleTunes' AI DJ to generate your own playlists
+## Controlling ToggleTunes' AI DJ to generate your own playlists along with Release Guardian for Protection
 
 Thanks to your help, ToggleTunes is now one of the most popular music applications! Let's celebrate by rewarding our most loyal subscribers with exciting new features! DJ Toggle is launching a new platinum experience that offers new books, concerts, and more!
 
-### Objective: Launch the Platinum Experience to our VIPs using LaunchDarkly's Segment Builder.
-Launch these platinum experiences to the most loyal of subscribers using LaunchDarkly's Segment Builder. We'll start by creating a segment for our platinum users. Next, we'll set up the logic which sets up when these experiences are launched. Finally, we'll ship these experiences to our VIPs and start the celebrations.
+### Objective: Launch the AI DJ Playlist generator using LaunchDarkly's AI Model Control and Release Guardian for added Protection.
+
+We also want to use LaunchDarkly's Release Guardian feature to keep track of the app's latency and error rates after releasing the new UI to further insure we have a successful release.
 
 ### Flag Variations
+
 Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
 
 <div className="flex items-center space-x-3">
-  <span className="text-lg text-blue-500 font-bold">
-    Flag Name:{" "}
-  </span>
-    <CopyField value="release-ai-playlist-creator" client:load />
+  <span className="text-lg text-blue-500 font-bold">Flag Name: </span>
+  <CopyField value="release-ai-playlist-creator" client:load />
 </div>
 
 <div className="flex items-center space-x-3">
@@ -27,10 +27,67 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
   <CopyField value="release-ai-playlist-creator" client:load />
 </div>
 
-<div className="flex items-center text-lg font-bold text-blue-500">
-  Default Targeting: {" "} 
-  <span className="text-black dark:text-white font-normal">
-     when "On" is "Available"
-  </span>
+<img src='/src/assets/img/aiModelFlagCreate.png' />
+
+It should look like this above.
+
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Flag Name:</span>
+  <CopyField value="Anthropic Claude Haiku" client:load />
 </div>
 
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+  <CopyField
+    value={`{
+  "max_tokens_to_sample": 1000,
+  "modelId": "anthropic.claude-instant-v1",
+  "temperature": 0.3,
+  "top_p": 1
+}`}
+    client:load
+  />
+</div>
+
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Flag Name:</span>
+  <CopyField value="Cohere Coral" client:load />
+</div>
+
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
+  <CopyField
+    value={`{
+  "max_tokens": 1000,
+  "modelId": "cohere.command-text-v14",
+  "p": 1,
+  "temperature": 0.5
+}
+`}
+    client:load
+  />
+</div>
+
+<div className="flex items-center text-lg font-bold text-blue-500">
+  Default Targeting:{" "}
+  <span className="text-black dark:text-white font-normal">when "On" is "Available"</span>
+</div>
+
+First release Anthropic
+
+<img src='/src/assets/img/claudeFlagVariation.png' />
+
+Click generate playlist
+<img src='/src/assets/img/claudeHomePage1.png' />
+
+<img src='/src/assets/img/claudeHomePage2.png' />
+<img src='/src/assets/img/claudeHomePage3.png' />
+
+Then release Cohere
+
+<img src='/src/assets/img/cohereFlagVariation.png' />
+
+You can see there Cohere is now changed. For the sake of time, we aren't going to generate a 2nd playlist.
+<img src='/src/assets/img/cohereHomePage1.png' />
+{/* <img src='/src/assets/img/cohereHomePage2.png' />
+<img src='/src/assets/img/cohereHomePage3.png' /> */}

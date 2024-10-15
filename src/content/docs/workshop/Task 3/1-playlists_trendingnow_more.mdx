@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Task Three - Targeting and Release Guardian - Shipping New UI
+title: Task Three - Targeting - Shipping New UI
 ---
 import CopyField from "../../../../components/copyfield.tsx";
 
@@ -10,14 +10,14 @@ Our users want to have access to curated playlists as well as improved discovery
 
 We want to avoid releasing a broken feature again to everyone, so we want our Developers to only see the new feature for testing purposes.
 
-We also want to use LaunchDarkly's Release Guardian feature to keep track of the app's latency and error rates after releasing the new UI to further insure we have a successful release.
-
 Let's ship these features, and keep the good vibes rollin'.
 
 ### Objective\: New Feature Flag
 Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
 
 ### Flag Variations
+
+<img src='/src/assets/img/releaseFlag.png' />
 
 <div className="flex items-center space-x-3">
   <span className="text-lg text-blue-500 font-bold">
@@ -54,23 +54,10 @@ Here is the rule: Context kind **'user'**, Attribute  **'role'**, Operator **'is
 
 Roll out **'Available'** for **'Developer'** ONLY. 
 
-**'Default Rule'** should be  **'Unavailable'**. This will allow your Developer to only see the new UI.
-
-### Release Guardian to Check Application's Error Rate and Latency
-
-On the flag details page for our new flag, under **'Rules'** section, click on the dropdown **'Add rule'**, and within the Add rule, select our **'Build a custom rule'** segment.
-
-<img src='/src/assets/img/developerTarget.png' />
-
-Copy what you see in the image above. 
-
-Here is the rule: Context kind **'user'**, Attribute  **'role'**, Operator **'is one of '**, Values **'Developer'**.
-
-Roll out **'Available'** for **'Developer'** ONLY. 
 
 **'Default Rule'** should be  **'Unavailable'**. This will allow your Developer to only see the new UI.
 
-Save the changes. Finally, turn the flag to on.
+Save the changes. Finally, turn the flag to **'On'** .
 
 With our toggle and serve section set to “Available” and our Developer targeted correctly, Developer can see the new UI feature and test the feature in production. Bonus points for not breaking a sweat or writing a single line of code in the process.
 
