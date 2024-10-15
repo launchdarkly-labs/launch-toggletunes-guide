@@ -5,7 +5,7 @@ title: Task 1 - Ship Tracks Beyond the Radio
 
 import CopyField from "../../../../components/copyfield.tsx";
 
-## Release the New Player Without the Risk
+## Release the New Player Without the Risk!
 
 
 DJ Toggle wants to give power back to the users! They want to enable a new track selector that allows users to select the songs they want to hear. Previously it would take weeks to ship a new version of ToggleTunes. 
@@ -18,20 +18,26 @@ No new installs. No big reloads. Let’s get ship done!
 
 Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
 
+<img src='/src/assets/img/createFlag.png' />
+
 ### Creating your first flag
+
+<img src='/src/assets/img/releaseTracklist.png' />
 
 <div className="flex items-center space-x-3">
   <span className="text-lg text-blue-500 font-bold">
     Flag Name:{" "}
   </span>
-    <CopyField value="tracklist" client:load />
+    <CopyField value="release-tracklist" client:load />
 </div>
 <div className="flex items-center space-x-3">
   <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
-  <CopyField value="tracklist" client:load />
+  <CopyField value="release-tracklist" client:load />
 </div>
 
 ### Flag Variations
+
+<img src='/src/assets/img/releaseFlag.png' />
 
 Select the `Boolean` option and fill in the variations with this information:
 

@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
-title: Task Two - Going Back with Recent Tracks
+title: Task Two - Unexpected Key Shift - Releasing Playlist Feature
 ---
 
 import CopyField from "../../../../components/copyfield.tsx";
 
-## Launching our Latest Feature - Playlist History
+## Launching our Latest Feature - Saved Playlist!
 
-Users want the ability to select from previous tracks they've heard.  
+Users want the ability to create and save their playlists in a sidebar component.
 
 The developers have already prepped the code and it's ready, but we don't need to wait for the pipeline. Let's create our new feature, and release it to the users!
 
@@ -17,17 +17,19 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
 
 ### Flag Variations
 
+<img src='/src/assets/img/releaseFlag.png' />
+
 Select the `Boolean` option and fill in the variations with this information:
 <div className="flex items-center space-x-3">
   <span className="text-lg text-blue-500 font-bold">
     Flag Name:{" "}
   </span>
-    <CopyField value="recenttunes" client:load />
+    <CopyField value="release-saved-playlists-sidebar" client:load />
 </div>
 
 <div className="flex items-center space-x-3">
   <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
-  <CopyField value="recenttunes" client:load />
+  <CopyField value="release-saved-playlists-sidebar" client:load />
 </div>
 
 <div className="text-lg font-bold text-blue-500">
@@ -36,6 +38,14 @@ Default variations:{" "}
 
 </div>
 
-Once this is complete, turn on targeting. Flip back to the site and refresh to check out the brand-new navigation system! 
+Once this is complete, turn on the flag. Flip back to the site and you see that the sidebar is messed up with red and purple backgrounds!
+
+<img src='/src/assets/img/brokenSidebar.png' />
+
+With the power of LaunchDarkly, you can hide the broken component within 200 ms with a flip of a switch.
+
+Flip the switch to hide the sidebar.
+
+<img src='/src/assets/img/turnOffFlagSidebar.png' />
 
 Task two conquered. 😎
