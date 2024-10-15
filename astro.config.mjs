@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 import expressiveCode from "astro-expressive-code";
 import tailwind from "@astrojs/tailwind";
 import node from "@astrojs/node";
-
+import netlify from '@astrojs/netlify/functions';
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
 
 
@@ -47,6 +47,8 @@ export default defineConfig({
   name: "LaunchDarkly ToggleTunes Booth Experience",
   base: "/",
   trailingSlash: "never",
+  // output: 'server',
+  // adapter: netlify(),
   output: "hybrid",
   adapter: node({
     mode: 'standalone',
