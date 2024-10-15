@@ -4,6 +4,7 @@ import react from "@astrojs/react";
 import expressiveCode from "astro-expressive-code";
 import tailwind from "@astrojs/tailwind";
 import node from "@astrojs/node";
+import netlify from '@astrojs/netlify';
 
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
 
@@ -48,10 +49,12 @@ export default defineConfig({
   site: 'https://launchdarkly-labs.github.io',
   base: 'launch-toggletunes-guide',
   trailingSlash: "never",
-  output: "hybrid",
-  adapter: node({
-    mode: 'standalone',
-  }),
+  output: 'server',
+  adapter: netlify(),
+  // output: "hybrid",
+  // adapter: node({
+  //   mode: 'standalone',
+  // }),
   server: {
     port: 3000,
     host: true
