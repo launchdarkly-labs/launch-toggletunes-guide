@@ -22,12 +22,12 @@ Select the `Boolean` option and fill in the variations with this information:
   <span className="text-lg text-blue-500 font-bold">
     Flag Name:{" "}
   </span>
-    <CopyField value="recenttunes" client:load />
+    <CopyField value="release-saved-playlists-sidebar" client:load />
 </div>
 
 <div className="flex items-center space-x-3">
   <span className="text-lg text-blue-500 font-bold">Flag Key:</span>
-  <CopyField value="recenttunes" client:load />
+  <CopyField value="release-saved-playlists-sidebar" client:load />
 </div>
 
 <div className="text-lg font-bold text-blue-500">
@@ -36,6 +36,10 @@ Default variations:{" "}
 
 </div>
 
-Once this is complete, turn on targeting. Flip back to the site and refresh to check out the brand-new navigation system! 
+Once this is complete, turn on the flag. Flip back to the site and you see that the sidebar is messed up with red and purple backgrounds!
+
+With the power of LaunchDarkly, you can hide the broken component within 200 ms with a flip of a switch.
+
+Flip the switch to hide the sidebar.
 
 Task two conquered. 😎
