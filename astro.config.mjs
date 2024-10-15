@@ -48,11 +48,11 @@ export default defineConfig({
   base: "/",
   trailingSlash: "never",
   // output: 'server',
-  adapter: netlify(),
+  // adapter: netlify(),
   output: "hybrid",
-  // adapter: node({
-  //   mode: 'standalone',
-  // }),
+  adapter: node({
+    mode: 'standalone',
+  }),
   server: {
     port: 3000,
     host: true
