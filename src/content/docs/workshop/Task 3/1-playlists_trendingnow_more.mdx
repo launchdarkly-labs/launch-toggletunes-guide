@@ -1,28 +1,18 @@
 ---
 sidebar_position: 1
-title: Task Three - Playlist, Trending Now, and More
+title: Task Three - Targeting and Release Guardian - Shipping New UI
 ---
 import CopyField from "../../../../components/copyfield.tsx";
 
-## Shipping New Playlists and Trending Hits!
-With all these new tracks, our users want to have access to curated playlists as well as improved discovery features helping them discover the hottest new tracks. Our brilliant team developed the very advanced ToggleAI, enabling users to access curated playlists and new discovery features.
+## Shipping NEW UI Layout with Playlists and Trending Hits in a Safer Manner!
+
+Our users want to have access to curated playlists as well as improved discovery features helping them discover the hottest new tracks. Our brilliant team developed the very advanced ToggleAI, enabling users to access curated playlists and new discovery features.
+
+We want to avoid releasing a broken feature again to everyone, so we want our Developers to only see the new feature for testing purposes.
+
+We also want to use LaunchDarkly's Release Guardian feature to keep track of the app's latency and error rates after releasing the new UI to further insure we have a successful release.
 
 Let's ship these features, and keep the good vibes rollin'.
-
-### Creating a New Segment
-
-Before creating your flags, create a new segment by selecting **'Create Segment'**. Select **'Build Dynamic Conditions and Rules'**
-
-<div className="flex items-center space-x-3">
-  <span className="text-lg text-blue-500 font-bold">
-    Segment Name:{" "}
-  </span>
-    <CopyField value="Platinum Users" client:load />
-</div>
-
-Once the segment is saved, select **'Add Rule'** and select **'Custom'**. Add the attribute of "tier" and then, in the Operator dropdown, choose **'is one of'** and enter **'Platinum'** for the value. Save your selection and move on to the next step.
-
-<img src='/src/assets/img/segments.png' />
 
 ### Objective\: New Feature Flag
 Open your LaunchDarkly project and click `create flag`, choose the `Release` option and then follow these steps:
@@ -43,27 +33,45 @@ Open your LaunchDarkly project and click `create flag`, choose the `Release` opt
 
 <div className="flex items-center space-x-3">
   <span className="text-lg text-blue-500 font-bold">
-     Default Targeting{" "}
+     Default Rule{" "}
   </span>
-  when "On" is "Available"
+  when "On" is "Unavailable"
 </div>
 
-With this feature enabled, we have revolutionized how our users curate and discover their sick beats. Playlists, trending hits, and our recent tunes are all at our user's fingertips.
+Now, we're ready to target our Developers.
 
-No downtime, no risks — just good vibes and launches.
+This feature will be toggled “off” for most of our users.  However, our Developers will be able to access these experiences by targeting these users specifically upon release.
 
-Now, we're ready to target our users.
+### Targeting Only Internal Developer to Test New UI Feature in Production
 
-This feature will be toggled “off” for most of our users.  However, the “Platinum User” segment we set up in a previous set will be able to access these experiences by targeting these users specifically upon release.
+On the flag details page for our new flag, under **'Rules'** section, click on the dropdown **'Add rule'**, and within the Add rule, select our **'Build a custom rule'** segment.
 
-### Targeting Specific Users
+<img src='/src/assets/img/developerTarget.png' />
 
-On the flag details page for our new flag, select **'Target Segments'**, and within the segment rules, select our **'Platinum Users'** segment.
+Copy what you see in the image above. 
 
-<img src='/src/assets/img/segmentrule.png' />
+Here is the rule: Context kind **'user'**, Attribute  **'role'**, Operator **'is one of '**, Values **'Developer'**.
 
-Ensure the serve section is set to **'Available'** enable the feature and save the changes. Finally, turn the flag to on.
+Roll out **'Available'** for **'Developer'** ONLY. 
 
-With our toggle and serve section set to “Available” and our segments targeted correctly, Platinum users receive product access to our exclusive experiences. Bonus points for not breaking a sweat or writing a single line of code in the process.
+**'Default Rule'** should be  **'Unavailable'**. This will allow your Developer to only see the new UI.
 
-ToggleTunes VIPs now enjoy the perks of DJ Toggle's concert and new ToggleTunes audio books — soon, we'll be able to launch tickets to the upcoming Jen Velocity “Ages” tour - an experience that's proven impossible to get tickets to!
+### Release Guardian to Check Application's Error Rate and Latency
+
+On the flag details page for our new flag, under **'Rules'** section, click on the dropdown **'Add rule'**, and within the Add rule, select our **'Build a custom rule'** segment.
+
+<img src='/src/assets/img/developerTarget.png' />
+
+Copy what you see in the image above. 
+
+Here is the rule: Context kind **'user'**, Attribute  **'role'**, Operator **'is one of '**, Values **'Developer'**.
+
+Roll out **'Available'** for **'Developer'** ONLY. 
+
+**'Default Rule'** should be  **'Unavailable'**. This will allow your Developer to only see the new UI.
+
+Save the changes. Finally, turn the flag to on.
+
+With our toggle and serve section set to “Available” and our Developer targeted correctly, Developer can see the new UI feature and test the feature in production. Bonus points for not breaking a sweat or writing a single line of code in the process.
+
+<img src='/src/assets/img/newUIDeveloperOnly.png' />
