@@ -45,7 +45,8 @@ export default defineConfig({
     }]
   }), react(), expressiveCode(astroExpressiveCodeOptions), tailwind()],
   name: "LaunchDarkly ToggleTunes Booth Experience",
-  base: "/",
+  site: 'https://launchdarkly-labs.github.io',
+  base: 'launch-toggletunes-guide',
   trailingSlash: "never",
   output: "hybrid",
   adapter: node({
