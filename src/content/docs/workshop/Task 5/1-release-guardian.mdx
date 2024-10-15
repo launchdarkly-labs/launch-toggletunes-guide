@@ -18,7 +18,29 @@ We also want to use LaunchDarkly's Release Guardian feature to keep track of the
 Go the **'Metrics'** tab on the left hand side to create your metrics that will be used to keep track of error rate and latency.
 
 <img src='/src/assets/img/getToMetrics.png' />
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Metric Name:</span>
+  <CopyField value="Website Error Rate" client:load />
+</div>
+
+Go the **'Success Criteria'** dropdown and choose **'Lower than baseline'**.
+
 <img src='/src/assets/img/websiteErrorRateMetric.png' />
+
+Go back to create another metric.
+
+<div className="flex items-center space-x-3">
+  <span className="text-lg text-blue-500 font-bold">Metric Name:</span>
+  <CopyField value="Website Latency Rate" client:load />
+</div>
+
+Click the tab **'Numeric'**.
+
+Go the **'Unit of measure'** input and input 
+<span><CopyField value="ms" client:load /></span>
+
+Go the **'Success Criteria'** dropdown and choose **'Lower than baseline'**.
+
 <img src='/src/assets/img/websiteLatencyRateMetric.png' />
 
 
